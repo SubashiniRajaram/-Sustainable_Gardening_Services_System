@@ -17,6 +17,8 @@ from django.conf import settings
 import stripe
 import requests
 from.models import  PlantSpecies,disease,Plant
+from embed_video.fields import EmbedVideoField
+
 
 
 
