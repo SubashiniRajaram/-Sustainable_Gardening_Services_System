@@ -1,0 +1,211 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="icon" type="image/png" href="{% static 'images/icons/planet-earth.png'%}" />
+
+</head>
+
+<body>
+    <section>
+        <div class="imgBx">
+            <img src="{% static 'images/login3.jpg' %}" alt="">
+        </div>
+        <div class="contentBx">
+            <div class="formBx">
+                
+           
+                <h2>Login</h2>
+                <div class="messages-container">
+                    <ul>
+                        {% for message in messages %}
+                            <li class="{% if 'success' in message.tags %}success{% elif 'error' in message.tags %}error{% endif %}">
+                                {{ message }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <form action="postsignin" method="post">
+                    {% csrf_token %}
+                   
+                    <div class="inputBx">
+                        <span>Email</span>
+                        <input type="email" name="email" id="email">
+                    </div>
+                    <div class="inputBx">
+                        <span>Password</span>
+                        <input type="password" name="password" id="password">
+                    </div>
+                    <div class="remember">
+                        <label ><input type="checkbox" name=''>Remenber me</label>
+                    </div>
+                    <div class="inputBx">
+                        <input type="submit" value="Sign in" name="" id="">
+                    </div>
+                    <div class="inputBx">
+                        <p>Don't have an account? <a href="{% url 'signup' %}">Sign up</a></p>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </section>
+</body>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+    }
+
+    section {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+    }
+
+    section .imgBx {
+        position: relative;
+        width: 50%;
+        height: 100%;
+    }
+
+    section .imgBx::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* background:linear-gradient(255deg,#1ee954,#03a9f4) ;*/
+        z-index: 1;
+        mix-blend-mode: screen;
+    }
+
+    section .imgBx img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+
+    }
+    section .contentBx
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        height: 100%;
+    }
+    section .contentBx .formBx
+    {
+        width: 50%;
+
+    }
+    section .contentBx .formBx h2
+    {
+         color: #607d8b;
+         font-weight: 600;
+         font-size: 1.5em;
+         text-transform: uppercase;
+         margin-bottom: 20px;
+         border-bottom: 4px solid #ff4584;
+         display: inline-block;
+         letter-spacing: 1px;
+    }
+    section .contentBx .formBx .inputBx{
+         margin-bottom: 20px; 
+
+    }
+    section .contentBx .formBx .inputBx span{
+         font-size: 16px;
+         margin-bottom: 5px;  
+         display: inline-block;
+         font-weight: 300;
+         color: #607d8b;
+         font-size: 16px;
+         letter-spacing: 1px;
+    }
+    section .contentBx .formBx .inputBx input{
+       width: 100%;
+       padding: 10px 20px;
+        outline: none;
+        font-weight: 400;
+        border: 1px solid #607d8b;
+        font-size: 16px;
+         letter-spacing: 1px;
+         color: #607d8b;
+         background: transparent;
+         border-radius: 30px;
+         
+
+    }
+    section .contentBx .formBx .inputBx input[type="submit"]
+    {
+        background: #ff4584;
+        color: #fff;
+        outline: none;
+        border: none;
+        font-weight: 500;
+        cursor: pointer;
+
+    }
+    section .contentBx .formBx .inputBx input[type="submit"]:hover{
+        background: #f53677;
+    }
+    section .contentBx .formBx .remember
+    {
+        margin-bottom:10px ;
+        color: #607d8b;
+        font-weight: 400;
+        font-size: 14px;
+
+    }
+    section .contentBx .formBx .inputBx p{
+        color: #607d8b;
+
+    }
+    section .contentBx .formBx .inputBx p a{
+        color: #ff4584;
+    }
+
+    .messages-container {
+        margin-bottom: 15px;
+    }
+    
+    .messages-container ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .messages-container li {
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 5px;
+    }
+    
+    
+    .messages-container li.success {
+        background-color: #d4edda; 
+        color: #155724; 
+    }
+    
+    .messages-container li.error {
+        background-color: #f8d7da; 
+        color: #721c24; 
+    }
+</style>
+
+</html>

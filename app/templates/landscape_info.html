@@ -1,0 +1,199 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Landscaping service Inquiry Form</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link rel="icon" type="image/png" href="{% static 'images/icons/planet-earth.png'%}" />
+
+
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+
+    form {
+        max-width: 400px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        color: #333;
+    }
+
+    input,
+    textarea,
+    select {
+        width: 96%;
+        padding: 10px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    .checkbox {
+        display: block;
+        position: relative;
+        padding-left: 25px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      
+      .checkbox input[type="checkbox"] {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+      }
+      
+      .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        background-color: #fff;
+        border: 2px solid #ccc;
+      }
+      
+      .checkbox:hover input ~ .checkmark {
+        background-color: #f0f0f0;
+      }
+      
+      .checkbox input[type="checkbox"]:checked ~ .checkmark {
+        background-color: #2196F3;
+      }
+      
+      .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+      }
+      
+      .checkbox input[type="checkbox"]:checked ~ .checkmark:after {
+        display: block;
+      }
+      
+      .checkbox .checkmark:after {
+        left: 7px;
+        top: 3px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+      }
+      
+</style>
+</head>
+
+<body>
+    <h1>Landscaping Inquiry Form</h1>
+    <!-- <img src="{% static 'images/terrace_garden.jpg' %}" alt="Terrace Gardening" class="img-fluid"> -->
+    <form action="landscaping-inquiry" method="post">
+        {% csrf_token %}
+
+
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+
+        <!-- Location Details -->
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" required></textarea>
+
+        <label for="desc">Description of Garden:</label>
+        <textarea id="desc" name="desc" ></textarea>
+
+
+
+        <!-- Site Assessment -->
+        <label for="terraceSize">Size of Garden(square feet):</label>
+        <input type="number" id="terraceSize" name="terraceSize" required>
+
+        <label for="service-type">Service Type:</label><br>
+        <select id="service-type" name="service-type">
+            <option value="Garden Design">Garden Design</option>
+            <option value="Lawn Maintenance">Lawn Maintenance</option>
+            <option value="Hardscaping">Hardscaping</option>
+            <option value="Water Features">Water Features</option>
+            <!-- Add more options as needed -->
+        </select>
+
+
+        <label for="datepicker">Select Date:</label>
+        <input type="text" id="datepicker" name="datepicker" required>
+
+        <!-- Time Picker -->
+        <label for="timepicker">Select Time:</label>
+        <input type="text" id="timepicker" name="timepicker" required>
+
+
+
+        <!-- Submit Button -->
+        <button type="submit">Submit Inquiry</button>
+    </form>
+
+    <script>
+        // Initialize Date Picker
+        $(function () {
+            $("#datepicker").datepicker({
+                dateFormat: 'dd-mm-yy', // Format the date as YYYY-MM-DD
+                minDate: 0, // Disable past dates
+                changeMonth: true,
+                changeYear: false
+            });
+
+            // Initialize Time Picker using flatpickr
+            flatpickr("#timepicker", {
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "h:i K", // Display AM/PM
+                time_24hr: false,    // Use 12-hour format          
+            });
+        });
+    </script>
+
+</body>
+
+</html>

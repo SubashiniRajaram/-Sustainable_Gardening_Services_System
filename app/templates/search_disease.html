@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="{% static 'images/icons/planet-earth.png'%}" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        /* CSS for the card view */
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: row;
+            margin-top: 8%;
+            margin-left: 13%;
+            width: 70%;
+        }
+
+        .card img {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            margin-left: 2%;
+            margin-top: 2%;
+            margin-bottom: 2%;
+        }
+
+        .card .details {
+            padding: 10px;
+            flex: 1;
+            margin-left: 8%;
+        }
+
+        .view-more {
+            background-color: #36768c;
+            border-color: #007bff;
+            color: #fff;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        }
+
+        .view-more:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+            color: #fff;
+        }
+
+        /* Added CSS for single side alignment */
+        .cards-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Aligning items to the center horizontally */
+            margin-top: 50px; /* Adjust this margin as needed */
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" >Plant Species </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'infohub'%}">Home <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" method="post" action="search_disease">
+                {% csrf_token %}
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                    id="search_disease" name="search_disease">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="cards-container">
+        <ul>
+            {% for disease in disease_list.data %}
+            <li class="card">
+                <div class="details">
+                    <h3 style="text-align: center;">{{ disease.common_name }}</h3>
+                    <p><strong>Scientific Name:</strong> {{ disease.scientific_name }}</p>
+                    <p><strong>Family:</strong> {{ disease.family }}</p>
+                    <p><strong>Host:</strong> {{ disease.host|join:", " }}</p>
+                    <p><strong>Description:</strong></p>
+                    {% for desc in disease.description %}
+                    <p><strong>{{ desc.subtitle }}</strong>: {{ desc.description }}</p>
+                    {% endfor %}
+                    <p><strong>Solution:</strong></p>
+                    {% for sol in disease.solution %}
+                    <p><strong>{{ sol.subtitle }}</strong>: {{ sol.description }}</p>
+                    {% endfor %}
+                    {% if disease.images %}
+                    <p><strong>Images:</strong></p>
+                    {% for image in disease.images %}
+                    <img src="{{ image.thumbnail }}" alt="Disease Image">
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+</body>
+
+</html>

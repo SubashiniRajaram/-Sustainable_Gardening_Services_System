@@ -1,0 +1,143 @@
+{% load static %}
+<!-- service_details.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="{% static 'images/icons/planet-earth.png'%}" />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px;
+        }
+
+        #image-container {
+            flex: 1;
+            height: 50%;
+        }
+
+        #details-container {
+            flex: 1;
+            margin-left: 65px;
+        }
+
+        img {
+            max-width: 100%;
+            width: 39%;
+            height: 560px;
+            margin-left: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid;
+            border-color: white;
+            text-align: left;
+        }
+
+        th {
+            background-color:white;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div id="image-container"> -->
+        <img src="{% static 'images/maintainence.jpg' %}" alt="Left Image">
+    <!-- </div> -->
+   
+    <div id="details-container">
+        {% if email_sent %}
+        <p style="color: green;">Thank you for booking ,email is sent to you </p>
+        {% endif %}
+        <h1>Service Details</h1>
+
+        <h2>User Information:</h2>
+        <table>
+            <tr>
+                <th>Email:</th>
+                <td>{{ data.email }}</td>
+            </tr>
+            <tr>
+                <th>Phone:</th>
+                <td>{{ data.phone }}</td>
+            </tr>
+            <tr>
+                <th>Address:</th>
+                <td>{{ data.address }}</td>
+            </tr>
+           
+            <tr>
+                <th>Garden Size:</th>
+                <td>{{ data.area }} sq. ft</td>
+            </tr>
+
+            <tr>
+                <th>Services requested</th>
+                <td>
+                    <ul>
+                        {% for val in selected_service %}
+                            <li>{{ val }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <th>Frequency</th>
+                <td>{{ data.frequency }}</td>
+            </tr>
+        </table>
+
+        <h2>Estimated Price:</h2>
+        <p>Estimated Price: Rs {{ estimate }}</p>
+
+        <form method="post" action="maintainence_service_detail">
+            {% csrf_token %}
+            <input type="hidden" name="email" value="{{ data.email }}">
+            <input type="hidden" name="phone" value="{{ data.phone }}">
+            <input type="hidden" name="address" value="{{ data.address }}">
+            <input type="hidden" name="description" value="{{ data.desc }}">
+            <input type="hidden" name="terrace_size" value="{{ data.area }}">
+             <input type="hidden" name="datepicker" value="{{data.date }}"> 
+             <input type="hidden" name="timepicker" value="{{data.time }}"> 
+             <input type="hidden" name="selected_services" value="{% for val in selected_service %}{{ val }}{% if not forloop.last %},{% endif %}{% endfor %}">
+             <input type="hidden" name="frequency" value="{{data.frequency}}"> 
+
+
+            <button type="submit">Confirm Booking</button>
+        </form>
+    </div>
+   
+</body>
+</html>

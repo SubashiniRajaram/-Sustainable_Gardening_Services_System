@@ -1,0 +1,246 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" type="image/png" href="{% static 'images/icons/planet-earth.png'%}" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+    <title>admin</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand text-white" >Admin</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <!-- <li class="nav-item active">
+                        <a class="nav-link text-white" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link text-white" >Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href=" "> Services</a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+
+   
+        <div class="container">
+            <div class="row mt-5 pt-3">
+                <div class="col-md-6">
+                    <div class="card my-3 shadow">
+                        <div class="card-body">
+                            <form action="addstatus" method="post">
+                                {% csrf_token %}
+                                <h3>SERVICE DETAILS</h3>
+                                <label for="service">Service Type</label>
+                                <select name="service" id="service" onchange="changeFields()">
+                                    <option value="terrace_gardening">Terrace Gardening </option>
+                                    <option value="maintenance">Garden Maintenance</option>
+                                    <option value="landscaping">Landscaping</option>
+                                </select>
+                                <br>
+                                <label >user id</label>
+                                <input type="text" id="user_id" name="user_id" placeholder="Enter customers user id">
+                                <br>
+                                <label >Service id</label>
+                                <input type="text" id="service_id" name="service_id" placeholder="Enter customers service id">
+                                <br>
+                                <label >Status </label>
+                                <br>
+                                <div id="terracefields">
+                                 <label >Site Assessment</label>
+                                 <select id="site" name="site">
+                                    <option value="completed">completed</option>
+                                    <option value="ongoing">ongoing</option>
+                                    <option value="upcoming">upcoming</option>
+                                 </select>
+                                <br>
+                                 <label for="content">Design and planning</label>
+                                 <select id="design" name="design">
+                                    <option value="completed">completed</option>
+                                    <option value="ongoing">ongoing</option>
+                                    <option value="upcoming">upcoming</option>
+                                </select>
+                                <br>
+                                <label for="content">materials and procurement</label>
+                                <select id="material" name="material">
+                                    <option value="completed">completed</option>
+                                    <option value="ongoing">ongoing</option>
+                                    <option value="upcoming">upcoming</option>
+                                </select>
+                                <br>
+                                <label for="content">Installation</label>
+                                <select id="installation" name="installation">
+                                    <option value="completed">completed</option>
+                                    <option value="ongoing">ongoing</option>
+                                    <option value="upcoming">upcoming</option>
+                                </select>   
+                            </div>  
+                            <div id="maintenancefields" style="display: none;">
+                                <label >Site Assessment</label>
+                                <select id="msite" name="msite">
+                                   <option value="completed">completed</option>
+                                   <option value="ongoing">ongoing</option>
+                                   <option value="upcoming">upcoming</option>
+                                </select>
+                               <br>
+                               <label >Maintenance planning</label>
+                                 <select id="plan" name="plan">
+                                    <option value="completed">completed</option>
+                                    <option value="ongoing">ongoing</option>
+                                    <option value="upcoming">upcoming</option>
+                                 </select>
+                                <br>
+                                <label >Regular visits</label>
+                                <select id="visit" name="visit">
+                                   <option value="completed">completed</option>
+                                   <option value="ongoing">ongoing</option>
+                                   <option value="upcoming">upcoming</option>
+                                </select>
+                               <br>
+                            </div>                     
+                                <button type="submit" style="margin-top: 10px;" class="styled-button">Add</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card my-3 shadow">
+                        <div class="card-body">
+                            <form action="updatesummary" method="post">
+                                {% csrf_token %}
+                                <h3>Update summary</h3>
+                                <label >user id</label>
+                                <input type="text" id="user_id" name="user_id" placeholder="Enter customers user id">
+                                <br>
+                                <label >Type of Service </label>
+                                <input type="text" id="service" name="service" placeholder="Enter  service ">
+                                <label >Service id</label>
+                                <input type="text" id="service_id" name="service_id" placeholder="Enter customers service id">
+                                <br>
+                                <label >Summary</label>
+                                <br>
+                                <textarea name="summary" id="summary" cols="65" rows="3" placeholder="Enter summary"></textarea>
+                                <button type="submit" style="margin-top: 10px;" class="styled-button">update</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+    
+
+    <style>
+       
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+      
+        .styled-button {
+            width: 70%;
+            padding: 10px 20px;
+            outline: none;
+            font-weight: 500;
+            cursor: pointer;
+            background: #2f38ba;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            margin-left: 70px;
+        }
+        
+        
+        
+    </style>
+<!-- Include Firebase JavaScript SDK (version 8) -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+
+<script>
+    /*var config = {
+        apiKey: "AIzaSyDXPedgFWJ-rZdUHg4whCVMMvbTAuyz3e0",
+        authDomain: "suba-31edf.firebaseapp.com",
+        databaseURL: "https://suba-31edf-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "suba-31edf",
+        storageBucket: "suba-31edf.appspot.com",
+        messagingSenderId: "204798333723",
+        appId: "1:204798333723:web:23a729ad8ec607f4f779be",
+        measurementId: "G-N74BDJ5QFH"
+      };
+      firebase.initializeApp(config)
+      function uploadimage() {
+        var storage = firebase.storage();
+        var file = document.getElementById("file").files[0];
+
+        var storageRef = storage.ref();
+        var thisRef = storageRef.child(file.name);
+
+        thisRef.put(file).then(function(snapshot) {
+            console.log('Image uploaded successfully');
+
+            thisRef.getDownloadURL().then(function(downloadURL) {
+                console.log('File available at', downloadURL);
+                document.getElementById("url").value = downloadURL;
+                alert("File uploaded");
+            }).catch(function(error) {
+                console.error('Error getting download URL:', error);
+       fi     });
+        }).catch(function(error) {
+            console.error('Error uploading image:', error);
+        });
+    }*/
+
+    function changeFields(){
+        var seleted_service = document.getElementById("service").value
+        if(seleted_service== 'maintenance')
+        {
+            terracefields.style.display="none"
+            maintenancefields.style.display="block"
+
+        }
+        else{
+            terracefields.style.display="block"
+            maintenancefields.style.display="none"
+        }
+    }
+</script>
+</body>
+
+</html>

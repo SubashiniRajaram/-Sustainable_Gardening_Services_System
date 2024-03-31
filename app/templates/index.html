@@ -1,0 +1,329 @@
+{% load static%}
+{% block content%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Home</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{% static 'images/icons/planet-earth.png'%}" />
+
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css'%}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css'%}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/iconic/css/material-design-iconic-font.min.css'%}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/linearicons-v1.0.0/icon-font.min.css'%}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css'">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css'%}">
+	<!--===============================================================================================-->
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css'%}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css'%}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/slick/slick.css' %}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/MagnificPopup/magnific-popup.css'%}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.css'%}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}">
+	<!--===============================================================================================-->
+</head>
+<style>
+	
+</style>
+
+<body class="animsition">
+
+
+	<!-- Header -->
+	<header class="fixed-top">
+		<!-- Header desktop -->
+		<div class="container-menu-desktop ">
+			<div class="top-bar fixed-top">
+				<div class="content-topbar flex-sb-m h-full container">
+					<div class="left-top-bar">
+					</div>
+
+					<div class="right-top-bar flex-w h-full">
+						<a  class="flex-c-m trans-04 p-lr-25">
+							Help & FAQs
+						</a>
+
+						<a href="signin" class="flex-c-m trans-04 p-lr-25">
+							Login
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="wrap-menu-desktop">
+				<nav class="limiter-menu-desktop container">
+
+					<!-- Logo desktop -->
+					<a  class="logo" style="height: 40px;">
+						<img src="static/images/icons/planet-earth.png" alt="IMG-LOGO">
+					</a>
+
+					<!-- Menu desktop -->
+					<div class="menu-desktop">
+						<ul class="main-menu">
+							<li class="active-menu">
+								<a href="{% url 'signin' %}">Home</a>
+								
+							</li>
+
+							<li>
+								<a href="{% url 'signin' %}">Shop</a>
+							</li>
+
+							<li>
+								<a href="{% url 'signin' %}">Services</a>
+							</li>
+							<li>
+								<a href="{% url 'signin' %}">InfoHub</a>
+							</li>
+
+							<li>
+								<a href="{% url 'signin' %}">Blog</a>
+							</li>
+
+
+							<li>
+								<a href="{% url 'signin' %}">Guide</a>
+							</li>
+							<li>
+								<a href="{% url 'signin' %}">Garden Waste</a>
+							</li>
+							<li>
+								<a href="{% url 'signin' %}">Calculators</a>
+							</li>
+						</ul>
+					</div>
+
+
+				</nav>
+			</div>
+		</div>
+
+	</header>
+
+	<!-- Header Mobile -->
+	<div class="wrap-header-mobile">
+		<!-- Logo moblie -->
+		<div class="logo-mobile">
+			<a href="index.html"><img src="" alt="IMG-LOGO"></a>
+		</div>
+
+		<!-- Icon header -->
+		<div class="wrap-icon-header flex-w flex-r-m m-r-15">
+			<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
+				<i class="zmdi zmdi-search"></i>
+			</div>
+
+			<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart">
+				<i class="zmdi zmdi-shopping-cart"></i>
+			</div>
+
+			<a  class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti">
+				<i class="zmdi zmdi-favorite-outline"></i>
+			</a>
+		</div>
+
+		<!-- Button show menu -->
+		<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+			<span class="hamburger-box">
+				<span class="hamburger-inner"></span>
+			</span>
+		</div>
+	</div>
+
+
+
+
+
+
+
+	<!-- Slider -->
+	<section class="section-slide">
+		<div class="wrap-slick1">
+			<div class="slick1">
+				<div class="item-slick1" style="background-image: url( 'static/images/banner-01.jpg' );">
+
+					<div class="container h-full">
+						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
+							<span class="ltext-101 cl2 respon2">
+								<!-- Explore a wide variety of plants  elevate your home <br>with lush greenery .... -->
+								🌿 Step into the enchanting world of gardening!<br>
+							</span>
+							
+							
+							<h4 class="ltext-101 cl2 p-t-19 p-b-43 respon1">
+								Leaf by Leaf, Creating Green Stories🍃
+							</h4>
+
+							<a href="{% url 'signin' %}"
+								class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04" style="background-color: #202020;">
+								explore more
+							</a>
+						</div>
+					</div>
+				</div>
+				<!-- 
+				
+									
+			</div>
+		</div>
+	</section>
+
+
+Banner -->
+				<div class="sec-banner bg0 p-t-80 p-b-50">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-4 col-xl-4 p-b-30 m-lr-auto equal-height ">
+								<!-- Block1 -->
+								<div class="block1 wrap-pic-w">
+									<img src="{% static 'images/banner-01.jpg' %}" alt="IMG-BANNER">
+
+									<a href="signin"
+										class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+										<div class="block1-txt-child1 flex-col-l">
+											<span class="block1-name ltext-102 trans-04 p-b-8">
+												Indoor plants
+											</span>
+
+											
+										</div>
+
+										<div class="block1-txt-child2 p-b-4 trans-05">
+											<div class="block1-link stext-101 cl0 trans-09">
+												Shop Now
+											</div>
+										</div>
+									</a>
+								</div>
+							</div>
+
+							<div class="col-md-4 col-xl-4 p-b-30 m-lr-auto equal-height">
+
+								<div class="block1 wrap-pic-w">
+									<img src="{% static 'images/banner-02.jpg' %}" alt="IMG-BANNER">
+
+									<a href="signin"
+										class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+										<div class="block1-txt-child1 flex-col-l">
+											<span class="block1-name ltext-102 trans-04 p-b-8">
+												Trending plants
+											</span>
+
+											
+										</div>
+
+										<div class="block1-txt-child2 p-b-4 trans-05">
+											<div class="block1-link stext-101 cl0 trans-09">
+												Shop Now
+											</div>
+										</div>
+									</a>
+								</div>
+							</div>
+
+							<div class="col-md-4 col-xl-4 p-b-30 m-lr-auto equal-height">
+								<!-- Block1 -->
+								<div class="block1 wrap-pic-w">
+									<img src="{% static 'images/banner-03.jpg' %}" alt="IMG-BANNER">
+
+									<a href="signin"
+										class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+										<div class="block1-txt-child1 flex-col-l">
+											<span class="block1-name ltext-102 trans-04 p-b-8">
+												Succulents
+											</span>
+
+										</div>
+
+										<div class="block1-txt-child2 p-b-4 trans-05">
+											<div class="block1-link stext-101 cl0 trans-09">
+												Shop Now
+											</div>
+										</div>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Footer -->
+				<footer class="bg3 p-t-75 p-b-32">
+					<div class="container">
+
+					</div>
+			</div>
+			</footer>
+
+
+			<!--===============================================================================================-->
+			<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+			<!--===============================================================================================-->
+			<script src="vendor/animsition/js/animsition.min.js"></script>
+			<!--===============================================================================================-->
+			<script src="vendor/bootstrap/js/popper.js"></script>
+			<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+			<!--===============================================================================================-->
+		
+		
+			<script src="vendor/slick/slick.min.js"></script>
+			<script src="js/slick-custom.js"></script>
+			<!--===============================================================================================-->
+			<script src="vendor/parallax100/parallax100.js"></script>
+			<script>
+				$('.parallax100').parallax100();
+			</script>
+			<!--===============================================================================================-->
+			
+			<!--===============================================================================================-->
+			<script src="vendor/isotope/isotope.pkgd.min.js"></script>
+			<!--===============================================================================================-->
+			<script src="vendor/sweetalert/sweetalert.min.js"></script>
+			
+			<!--===============================================================================================-->
+			<script src="js/main.js"></script>
+			<style>
+				/* CSS to fix the navbar at the top of the page */
+				/* CSS for the header */
+				.top-bar.fixed-top {
+					position: fixed;
+					top: 0;
+					left: 0;
+					width: 100%;
+					z-index: 2;
+					/* Ensure top bar stays above other content */
+					background-color: #0c0c0c;
+					/* Add background color to the top bar */
+					padding: 10px 0;
+					/* Add padding to the top bar */
+					border-bottom: 1px solid #eaeaea;
+					/* Add border to the bottom of the top bar */
+				}
+
+				.wrap-menu-desktop {
+					background-color:rgba(37, 41, 39, 0.9);
+				}
+
+				.main-menu>li>a {
+					color: #ebe3e3;
+				}
+			</style>
+</body>
+
+</html>
+{% endblock %}

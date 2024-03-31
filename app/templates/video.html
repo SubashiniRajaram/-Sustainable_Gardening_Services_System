@@ -1,0 +1,72 @@
+{% load static %}
+{% load embed_video_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="{% static 'images/icons/planet-earth.png'%}" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Gallery</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .video-container {
+            padding: 10px;
+        }
+        .title-container {
+            margin-top: 80px; /* Adjust this value as needed */
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">Video Gallery</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'tutorial' %}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                
+                
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'tutorial_category1' 'veg'%}">Vegetable Gardening <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'tutorial_category1' 'balcony'%}">Balcony Gardening<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'tutorial_category1' 'vertical'%}">Vertical Gardening<span class="sr-only">(current)</span></a>
+                </li>
+                
+
+            </ul>
+            <!-- <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form> -->
+        </div>
+    </nav>
+    
+    <div class="container title-container">
+        <h1 class="text-center mt-5 mb-4">"Kitchen to Garden: Growing Fresh Vegetables and Herbs"</h1>
+        <div class="row">
+            {% for item in obj %}
+            <div class="col-md-6 mb-4">
+                <div class="video-container border p-3">
+                    {% video item.video 'small' %}
+                        <p>{{item.description}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

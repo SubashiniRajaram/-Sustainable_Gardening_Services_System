@@ -1,0 +1,347 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Page</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    <style>
+        /* styles.css */
+        body,
+        .container {
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .question-section {
+            width: 50%;
+            height: 80%;
+            padding: 20px;
+        }
+
+        .image-section {
+            width: 35%;
+            padding: 20px;
+            justify-content: flex-end;
+        }
+
+        img {
+            width: 90vh;
+            height: 100vh;
+        }
+
+        .question-box {
+            padding: 10px;
+            margin-bottom: 10px;
+            margin-top: 7%;
+            text-align: center;
+            /* Center align the question */
+        }
+
+        .question {
+            font-size: 25px;
+            font-weight: bold;
+            margin-top: 20px;
+            /* Adds space above the element */
+            margin-bottom: 50px;
+            /* Adds space below the element */
+            margin-left: 0;
+        }
+
+        .question-no {
+            font-size: 20px;
+            font-weight: lighter;
+            margin-bottom: 20px;
+            /* Adds space below the question number */
+            position: relative;
+            /* Use position relative for absolute positioning */
+            top: -30px;
+            /* Adjust the top position to move it above the question */
+            left: -18px;
+            /* Adjust the left position to move it to the left */
+        }
+
+        label {
+            margin-bottom: 20px;
+            cursor: pointer;
+            border: 1px solid #060505;
+            /* Add border around each option */
+            padding: 10px;
+            /* Add padding for better styling */
+            background-color: rgba(61, 146, 93, 0.082);
+            border-radius: 15px;
+            width: 75%;
+            margin-left: 18px;
+            font-weight: lighter;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+        }
+
+       /* label:hover {
+            background-color: #f0f0f0;
+        }*/
+
+        .next-btn {
+            padding: 10px 20px;
+            background-color: #3d9669;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 15px;
+        }
+
+        .next-btn:hover {
+            background-color: #3be090;
+        }
+        .progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px; /* Adjust the height of the progress bar */
+            background-color: #f0f0f0; /* Background color of the progress bar container */
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background-color: #3d9669; /* Color of the progress bar */
+            width: 0; /* Initial width of the progress bar */
+        }
+        .selected-option {
+            background-color: #3be090;
+            /* Add your desired styles for selected options */
+        }
+        
+    </style>
+</head>
+
+<body>
+    <!-- <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+    </div> -->
+    <div class="container">
+
+        <div class="question-section" id="question1">
+            <div class="question-box">
+                <div class="question-no">
+                    Question 1: Care Level
+                </div>
+                <div class="question">
+                    How experienced are you with plants?
+                </div>
+                <div class="options">
+                    <label onclick="answer('High', this)"><input type="hidden" name="answer" value="High" > I'm a Botanical Expert 🎓</label><br>
+                    <label onclick="answer('Medium', this)"><input type="hidden" name="answer" value="Medium"  > I can keep a few plants alive
+                        🌱</label><br>
+                    <label   onclick="answer('Low', this)"><input type="hidden" name="answer" value="Low"> I'm just starting out 🌿</label><br>
+                </div>
+            </div>
+            <button class="next-btn" onclick="showNextQuestion('question1','question2')">Next Question</button>
+        </div>
+
+        <div class="question-section" id="question2" style="display: none;">
+            <div class="question-box">
+                <div class="question-no">
+                    Question 2: Sunlight
+                </div>
+                <div class="question">
+                    How much sunlight does your space receive?
+                </div>
+                <div class="options">
+                    <label onclick="answer('Fullsun',this)"><input type="hidden" name="answer" value="Fullsun"> My space gets plenty of sunlight
+                        ☀️</label><br>
+                    <label onclick="answer('Partshade',this)"><input type="hidden" name="answer" value="Partshade">There's some sunlight, but it's not direct
+                        🌤️
+                    </label ><br>
+                    
+                </div>
+            </div>
+            <button class="next-btn" onclick="showNextQuestion('question2','question3')">Next Question</button>
+
+        </div>
+
+        <div class="question-section" id="question3" style="display: none;">
+            <div class="question-box">
+                <div class="question-no">
+                    Question 3: type
+                </div>
+                <div class="question">
+                    Where do you plan to keep your plants?
+
+                </div>
+                <div class="options">
+                    <label onclick="answer('True', this)"><input type="hidden" name="location" value="indoor"> Cozy Indoors 🏠</label><br>
+                    <label onclick="answer('False', this)"><input type="hidden" name="location" value="outdoor"> Fresh Outdoors 🌳</label><br>
+                </div>
+            </div>
+            <button class="next-btn" onclick="showNextQuestion('question3','question4')">Next Question</button>
+
+        </div>
+        <div class="question-section" id="question4" style="display: none;">
+            <div class="question-box">
+                <div class="question-no">
+                    Question 4: Watering
+                </div>
+                <div class="question">
+                    How often do you prefer to water your plants?
+                </div>
+                <div class="options">
+                    <label onclick="answer('Frequent', this)"><input type="hidden" name="answer" value="paris"> Every day, they're like my green babies!
+                        🌱💧</label><br>
+                    <label onclick="answer('Average', this)"><input type="hidden" name="answer" value="london"> A couple of times a week, I like to keep
+                        them hydrated 💦
+                    </label><br>
+                    <label onclick="answer('Minimum', this)"><input type="hidden" name="answer" value="berlin"> I give it a splash once in a blue moon
+                        🤷‍♂️</label><br>
+                </div>
+            </div>
+            <button class="next-btn" onclick="showNextQuestion('question4','question5')">Next Question</button>
+
+        </div>
+        <div class="question-section" id="question5" style="display: none;">
+            <div class="question-box">
+                <div class="question-no">
+                    Question 5: Flowering
+                </div>
+                <div class="question">
+                    Which plant variety catches your eye?
+                </div>
+                <div class="options">
+                    <label onclick="answer('True', this)"><input type="hidden" name="answer" value="paris"> Flowering beauties, adding vibrance to any
+                        space! 🌸🌻</label><br>
+                    <label onclick="answer('False', this)"><input type="hidden" name="answer" value="london"> Non-flowering greens, bringing a sense of
+                        calm and freshness! 🌿
+                    </label><br>
+                </div>
+            </div>
+            <button class="next-btn" onclick="showNextQuestion('question5','question6')">Next Question</button>
+
+        </div>
+        <div class="question-section" id="question6" style="display: none;">
+            <div class="question-box">
+                <div class="question-no">
+                    Question 6: Fruits
+                </div>
+                <div class="question">
+                    Do you prefer plants that bear fruits
+                </div>
+                <div class="options">
+                    <label onclick="answer('True', this)"><input type="hidden" name="answer" value="paris"> Yes, I love the idea of picking fresh fruits! 🍅🍉
+                        </label><br>
+                    <label onclick="answer('False', this)"><input type="hidden" name="answer" value="london"> No, I'm more interested in other aspects of plants. 🌿
+                    </label><br>
+                </div>
+            </div>
+            <button class="next-btn" onclick="showNextQuestion('question6','question7')">Next Question</button>
+
+        </div>
+        <div class="question-section" id="question7" style="display: none;">
+            <div class="question-box">
+                <div class="question-no">
+                    Question 7: Pets
+                </div>
+                <div class="question">
+                    Do you have pets at home 🐾?
+                </div>
+                <div class="options">
+                    <label onclick="answer('True', this)"><input type="hidden" name="answer" value="True"> Yes, I have furry friends roaming around!🐶
+                        </label><br>
+                    <label onclick="last('False',this)"><input type="hidden" name="answer" value="False"> No, my house is a pet-free zone🚫
+                    </label><br>
+                </div>
+            </div>
+            <button class="next-btn" onclick="viewResults()">View Results</button>
+
+        </div>
+      
+
+        <div class="image-section">
+            <img src="{% static 'images/suggestion2.jpg' %}" alt="Image" id="quiz-image">>
+        </div>
+    </div>
+  
+    <script>
+        var preference=[]
+        var sugg=[]
+        function last(value,element)
+        {
+            var labels = document.querySelectorAll('.options label');
+            labels.forEach(label => label.classList.remove('selected-option'));
+        
+            // Add selected-option class to the clicked label
+            element.classList.add('selected-option');
+            preference.splice(0);
+            preference.push(value)
+        }
+        function answer(value,element)
+        {
+            var labels = document.querySelectorAll('.options label');
+            labels.forEach(label => label.classList.remove('selected-option'));
+        
+            // Add selected-option class to the clicked label
+            element.classList.add('selected-option');
+        
+           preference.splice(0);
+           preference.push(value)
+          // console.log(preference)
+        }
+        function showNextQuestion(curr, next) {
+          
+        
+            document.getElementById(curr).style.display = 'none';
+            document.getElementById(next).style.display = 'block';
+            switch (next) {
+                case 'question1':
+                    document.getElementById('quiz-image').src = "{% static 'images/suggestion2.jpg' %}";
+                    break;
+                case 'question2':
+                    document.getElementById('quiz-image').src = "{% static 'images/suggestion_1.jpg' %}";
+                    break;
+                case 'question3':
+                    document.getElementById('quiz-image').src = "{% static 'images/suggestion_3.jpg' %}";
+                    break;
+
+                case 'question4':
+                    document.getElementById('quiz-image').src = "{% static 'images/suggestion_4a.jpg' %}";
+                    break;
+                case 'question5':
+                    document.getElementById('quiz-image').src = "{% static 'images/suggestion_5a.jpg' %}";
+                    break;
+                case 'question6':
+                    document.getElementById('quiz-image').src = "{% static 'images/suggestion_6.jpg' %}";
+                    break;
+                case 'question7':
+                    document.getElementById('quiz-image').src = "{% static 'images/suggestion_7.jpg' %}";
+                    break;
+            }
+             // Get the value of the clicked option
+              sugg.push(preference[0])
+              console.log(sugg)
+    
+              
+
+        }
+        function viewResults() {
+            sugg.push(preference[0])
+            // Construct the URL with the elements of the sugg array
+            var url = "{% url 'results_view' %}?sugg=" + sugg.join(',');
+            // Redirect the user to the URL
+           window.location.href = url;
+           console.log(url)
+        }
+    </script>
+</body>
+
+</html>

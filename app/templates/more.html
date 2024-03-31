@@ -1,0 +1,196 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" type="image/png" href="{% static 'images/icons/planet-earth.png'%}" />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <style>
+        .card {
+            display: flex;
+            flex-direction: row;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 20px;
+            margin-top: 45px;
+            width: 80%;
+            margin-left: 110px;
+        }
+
+        .left-section {
+            flex: 1;
+            padding-right: 10px;
+            width: 35%;
+            padding-left: 10px;
+            margin-left: 2%;
+        }
+
+        .right-section {
+            flex: 1;
+            padding-left: 10px;
+            padding-right: 15px;
+            margin-right: 5%;
+            margin-left: 2.5%;
+
+        }
+        .field {
+            margin-bottom: 10px;
+        }
+        
+        .field label {
+            font-weight: bold;
+        }
+        
+        .field span {
+            color: #666;
+        }
+        .field p{
+            color: #666;
+            text-align: justify;
+ 
+        }
+        h3{
+            margin-top: 90px;
+        }
+        img{
+            width:300px;
+            height: 300px;
+            padding: 10px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">Plant Species </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'plant_details' %}">Home <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <h3 style="text-align: center;" >{{ data.common_name }}</h3>
+
+    <div class="card">
+        <div class="left-section">
+            <!-- Left Section Content -->
+            <img src="{{ data.default_image.thumbnail }}" alt="Image">
+            
+            <div class="field">
+                <label>Scientific Name:</label>
+                <span>{{ data.scientific_name|join:"," }}</span>
+            </div>
+            <div class="field">
+                <label>Other Name:</label>
+                <span>{{ data.other_name|join:"," }}</span>
+            </div>
+            <div class="field">
+                <label>Family:</label>
+                <span>{{ data.family }}</span>
+            </div>
+            <div class="field">
+                <label>Type 🌲:</label>
+                <span>{{ data.type }}</span>
+            </div>
+            <div class="field">
+                <label>Dimension  📏 :</label>
+                <span>{{ data.dimension }}</span>
+            </div>
+            <div class="field">
+                <label>Sunlight 🌞:</label>
+                <span>{{ data.sunlight|join:"," }}</span>
+            </div>
+            <div class="field">
+                <label>Cycle 🕓:</label>
+                <span>{{ data.cycle }}</span>
+            </div>
+            <div class="field">
+                <label>Indoor:</label>
+                {% if data.indoor  %}
+                <span>Indoor plant</span>
+                {% else %}
+                <span>Not an indoor plant</span>
+                {% endif %}
+
+            </div>
+           
+        </div>
+
+        <div class="right-section">
+            <!-- Right Section Content -->
+           
+            <div class="field">
+                <label>Origin 🌍 :</label>
+                <span>{{ data.origin|join:"," }}</span>
+            </div>
+            <div class="field">
+                <label style="text-align: justify;">Description 📜 :</label>
+                <p>{{ data.description }}</p>
+            </div>
+           
+            <div class="field">
+                <label>Propagation:</label>
+                <p style="text-align: left;"> {{ data.propagation|join:"," }}</p>
+            </div>
+            <div class="field">
+                <label>Watering Period 💧 :</label>
+                <span>{{ data.watering_period }}</span>
+            </div>
+            <div class="field">
+                <label>Watering General Benchmark 📅 :</label>
+                <span>{{ data.watering_general_benchmark.value }} {{data.watering_general_benchmark.unit}}</span>
+            </div>
+            
+            <div class="field">
+                <label>Pruning Month ✂️:</label>
+                <span>{{ data.pruning_month|join:"," }}</span>
+            </div>
+            
+            <div class="field">
+                <label>Flowers 🌺:</label>
+                {% if data.flowers  %}
+                <span>Flowering plant</span>
+                {% else %}
+                <span>Non Flowering plant</span>
+                {% endif %}
+
+            </div>
+            <div class="field">
+                <label>Medicinal 🌿:</label>
+
+                {% if data.medicinal  %}
+                <span>has medicinal properties</span>
+                {% else %}
+                <span>Non Medicinal plant</span>
+                {% endif %}
+
+            </div>
+            
+            <div class="field">
+                <label>Growth Rate 🌱 :</label>
+                <span>{{ data.growth_rate }}</span>
+            </div>
+            <div class="field">
+                <label>Care Level 🪴:</label>
+                <span>{{ data.care_level }}</span>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

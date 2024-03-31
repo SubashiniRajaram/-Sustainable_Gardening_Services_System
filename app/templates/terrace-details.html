@@ -1,0 +1,217 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="{% static 'images/icons/planet-earth.png'%}" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Terrace Gardening Inquiry Form</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+
+    form {
+        max-width: 400px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        color: #333;
+    }
+
+    input,
+    textarea,
+    select {
+        width: 96%;
+        padding: 10px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+</style>
+</head>
+
+<body>
+    <h1>Terrace Gardening Inquiry Form</h1>
+    <!-- <img src="{% static 'images/terrace_garden.jpg' %}" alt="Terrace Gardening" class="img-fluid"> -->
+    <form action="terrace-gardening-inquiry" method="post">
+        {% csrf_token %}
+
+
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+
+        <!-- Location Details -->
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" required></textarea>
+        <a  onclick="display()">share location</a>
+        <div  id="output">
+      
+        </div>
+        <p>Note:click the link and mark your location and paste the link below</p>
+
+        <input type="text" placeholder="enter link here" id="location",name="location">
+
+        <label for="GardeningType">Type of Gardening:</label>
+        <select name="GardeningType" id="GardeningType">
+            <option value="Roof">Roof</option>
+            <option value="Terrace">Terrace</option>
+            <option value="Balcony">Balcony</option>
+        </select>
+
+        <!-- Site Assessment -->
+        <label for="terraceSize">Size of Terrace(square feet):</label>
+        <input type="number" id="terraceSize" name="terraceSize" required>
+
+        <label for="sunlightExposure">Sunlight Exposure:</label>
+        <select name="sunlightExposure" id="sunlightExposure">
+            <option value="low">low </option>
+            <option value="medium">medium</option>
+            <option value="high">High</option>
+        </select>
+        <!-- Customer Preferences -->
+        <label for="plantPreferences">Preferred Plants Category:</label>
+        <select name="preferences" id="preferences">
+            <option value="fruits">fruits,vegetables,herbs</option>
+            <option value="flowers">Flowering and aromatic plants</option>
+            <option value="both">both</option>
+        </select>
+
+        <!-- Maintenance Preferences -->
+        <label for="maintenanceLevel">Customer's Involvement in Maintenance:</label>
+        <select name="maintenanceLevel" id="maintenanceLevel">
+            <option value="low">low </option>
+            <option value="medium">medium</option>
+        </select>
+
+
+        <!-- Additional Services -->
+        <label for="additionalServices">Interest in Additional Services:</label>
+        <select id="additionalServices" name="additionalServices">
+            <option value="maintenance">Garden Maintenance</option>
+            <option value="pestControl">Pest Control</option>
+            <option value="none">none</option>
+        </select>
+        <label for="datepicker">Select Date:</label>
+        <input type="text" id="datepicker" name="datepicker" required>
+
+        <!-- Time Picker -->
+        <label for="timepicker">Select Time:</label>
+        <input type="text" id="timepicker" name="timepicker" required>
+
+
+
+        <!-- Submit Button -->
+        <button type="submit">Submit Inquiry</button>
+    </form>
+   
+    <script>
+        // Initialize Date Picker
+        $(function () {
+            $("#datepicker").datepicker({
+                dateFormat: 'dd-mm-yy', // Format the date as YYYY-MM-DD
+                minDate: 0, // Disable past dates
+                changeMonth: true,
+                changeYear: false
+            });
+
+            // Initialize Time Picker using flatpickr
+            flatpickr("#timepicker", {
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "h:i K", // Display AM/PM
+                time_24hr: false,    // Use 12-hour format          
+              });
+        });
+
+
+        if(!navigator.geolocation)
+        {
+            throw new Error("No geolocation available")
+        }
+        function success(pos)
+        {
+            const lat=pos.coords.latitude;
+            const lng=pos.coords.longitude;
+    
+            const markup=`
+            <a href="https://www.openstreetmap.org/#map=16/${lat}/${lng}">
+                click here to view map
+            </a>
+                `;
+                document.getElementById('output').innerHTML=markup;
+                navigator.geolocation.clearWatch(id);
+           console.log(pos);
+        }
+        function error(err)
+        {
+               if(err.code==1)
+               {
+                alert("please allow access to geolocation")
+               }  
+               else{
+                  alert("position unavailable")
+               }   
+        }
+    
+        function display(){
+           var location_data=document.getElementById("location").value
+           console.log(location_data)
+        }
+        const options ={
+            enableHighAccuracy:true,
+            timeout:6000,
+            maximumAge:0,
+    
+    
+        };
+       const id= navigator.geolocation.getCurrentPosition(success,error,options);
+    </script>
+
+</body>
+
+</html>

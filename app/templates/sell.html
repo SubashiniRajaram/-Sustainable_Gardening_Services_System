@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <title>Donate</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            border: solid black;
+            padding: 20px; /* Add padding for better appearance */
+            text-align: center; /* Center align form contents */
+            width: 75%;
+            background-color: rgb(245, 249, 249);
+            margin-left: 10%;
+            margin-top: 6%;
+
+        }
+        label {
+            display: inline-block;
+            width: 40%; 
+            text-align: left; 
+            margin-bottom: 5px; 
+           color: black;
+
+        }
+        input, select, button {
+            width: 30%; 
+            box-sizing: border-box; 
+            margin: 0 auto 10px; 
+            display: block; 
+            margin-left: 60%;
+        }
+        #rectangleFields, #roundFields, #potFields {
+            display: none;
+        }
+        h2 {
+            margin-top: 65px;
+            text-align: center; 
+            font-family: sans-serif;
+        }
+        img{
+            height: 330px;
+            width: 400px;
+        }
+        p{
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand text-white" >Garden Waste management </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link text-white" href="{% url 'shop'%}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link text-white" href="{% url 'mydonations'%}">My Donations <span class="sr-only">(current)</span></a>
+                    </li>
+                    
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    {% if message %}
+    <script>
+        alert("{{message}}")
+    </script>
+     
+     {% endif %}
+
+    <form action="{% url 'addwaste' %}" method="post">
+        {% csrf_token %}
+        <img  src="{% static 'images/sell.png' %}" style="float: left;">
+
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="phone" required>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required>
+
+        <label for="type">Select Type of Garden waste/fertlizer:</label>
+        <select id="type" name="type">
+            <option value="gardenwaste">Leaves,trimmings</option>
+            <option value="cowdung">Cow dung</option>
+            <option value="wormcasting">Worm Casting</option>
+        </select>
+
+            <label for="quantity">Enter Quantity Available (kg):</label>
+            <input type="number" id="quantity" name="quantity">
+
+            <!-- <label for="price" >Enter price (per kg):</label>
+            <input type="number" id="price"  name="price"> -->
+            
+             
+        <label for="image" >Image:</label>
+        <input type="file" name="file[]" id="file">
+        <input type="hidden" name="url" id="url">
+         <button type="button" onclick="uploadimage()">upload</button>
+
+        <button type="submit">Submit</button>
+      
+
+    </form>
+
+</body>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+
+<script>
+    var config = {
+        apiKey: "AIzaSyDXPedgFWJ-rZdUHg4whCVMMvbTAuyz3e0",
+        authDomain: "suba-31edf.firebaseapp.com",
+        databaseURL: "https://suba-31edf-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "suba-31edf",
+        storageBucket: "suba-31edf.appspot.com",
+        messagingSenderId: "204798333723",
+        appId: "1:204798333723:web:23a729ad8ec607f4f779be",
+        measurementId: "G-N74BDJ5QFH"
+      };
+      firebase.initializeApp(config)
+      function uploadimage() {
+        var storage = firebase.storage();
+        var file = document.getElementById("file").files[0];
+
+        var storageRef = storage.ref();
+        var thisRef = storageRef.child(file.name);
+
+        thisRef.put(file).then(function(snapshot) {
+            console.log('Image uploaded successfully');
+
+            // Get download URL asynchronously
+            thisRef.getDownloadURL().then(function(downloadURL) {
+                console.log('File available at', downloadURL);
+                document.getElementById("url").value = downloadURL;
+                alert("File uploaded");
+            }).catch(function(error) {
+                console.error('Error getting download URL:', error);
+            });
+        }).catch(function(error) {
+            console.error('Error uploading image:', error);
+        });
+    }
+</script>
+</html>

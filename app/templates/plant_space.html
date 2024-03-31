@@ -1,0 +1,157 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <title>Plant Spacing Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        form {
+            border: solid black;
+            padding: 20px;
+            /* Add padding for better appearance */
+            text-align: center;
+            /* Center align form contents */
+            width: 75%;
+            /* background-color: rgb(208, 214, 214);*/
+            background-color: rgb(248, 245, 245);
+            margin-left: 10%;
+            height: 350px;
+
+        }
+
+        label {
+            display: inline-block;
+            width: 40%;
+            /* Adjust label width */
+            text-align: left;
+            /* Align label text to the left */
+            margin-bottom: 5px;
+            /* Add space below each label */
+            color: black;
+        }
+
+        input,
+        select,
+        button {
+            width: 30%;
+            box-sizing: border-box;
+            margin: 0 auto 10px;
+            display: block;
+        }
+
+        #rectangleFields,
+        #roundFields,
+        #potFields {
+            display: none;
+        }
+
+        h2 {
+            margin-top: 65px;
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        img {
+            height: 300px;
+            width: 400px;
+        }
+
+        p {
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand text-white" >calculator</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link text-white" href="{% url 'shop' %}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'space_details' %}">Spacing info </a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <h2>Plant Spacing Calculator</h2>
+    <p>
+        "Plan your garden flawlessly with our Plant Spacing Calculator: Just enter your dimensions, get perfect plant
+        counts, and watch your garden bloom beautifully!"</p>
+    <form>
+        <img src="{% static 'images/space.jpeg' %}" style="float: left;">
+
+        <!-- <label for="shape">Select Type of mulch:</label>
+        <select id="shape" >
+            <option value="wood">Wood chips</option>
+            <option value="bark">Bark Mulch</option>
+            <option value="straw">Straw</option>
+        </select> -->
+
+        <label for="length">Enter Length (m):</label>
+        <input type="number" id="length" placeholder="Length">
+        <label for="width">Enter Width (m):</label>
+        <input type="number" id="width" placeholder="Width">
+        <label for="depth">Enter spacing(inch):</label>
+        <input type="number" id="depth" placeholder="spacing required">
+
+
+
+        <button type="button" onclick="calculate()">Calculate</button>
+        <div id="result" style="display: none;">
+            <p></p>
+        </div>
+
+    </form>
+
+    <p id="result"></p>
+    <h3 style="text-align: center;">Spacing Tips </h3>
+    <p>
+    
+        "Transform your garden into a colorful paradise with these plant spacing tips! 🌱 Follow planting instructions for optimal growth based on mature size. 🌿 Prioritize air circulation to ward off diseases and nurture lush foliage. ☀️ Strategically place plants to meet their sunlight needs and enhance vitality. 🌼 Regularly maintain and thin overcrowded areas for a thriving, picture-perfect garden!"    </p>
+
+    <script>
+
+
+        function calculate() {
+            var shapeSelect = document.getElementById("shape");
+            var volume = 0;
+            var result = document.getElementById("result")
+            var length = parseFloat(document.getElementById("length").value);
+            var width = parseFloat(document.getElementById("width").value);
+            var depth = parseFloat(document.getElementById("depth").value);
+            depth=depth*0.0254
+            var nr = length / depth + 1
+            var nc = width / depth + 1
+            var ans = Math.round(nc*nr)
+
+
+            document.getElementById("result").innerText += "you nedd  " + ans + " plants";
+            result.textContent = "You need " + ans + " plants"
+            result.style.display = "block"
+
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="{% static 'images/icons/planet-earth.png'%}" />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geo Location API</title>
+</head>
+<body>
+    Geolocation 
+    <div  id="output">
+      
+    </div>
+    <label >enter link</label>
+    <input type="text" placeholder="enter link" id="location">
+    <button type="submit" onclick="display()">submit</button>
+</body>
+<script>
+    if(!navigator.geolocation)
+    {
+        throw new Error("No geolocation available")
+    }
+    function success(pos)
+    {
+        const lat=pos.coords.latitude;
+        const lng=pos.coords.longitude;
+
+        const markup=`
+        <a href="https://www.openstreetmap.org/#map=16/${lat}/${lng}">
+            your current position :latitude:${lat},longitude:${lng}
+        </a>
+            `;
+            document.getElementById('output').innerHTML=markup;
+            navigator.geolocation.clearWatch(id);
+       console.log(pos);
+    }
+    function error(err)
+    {
+           if(err.code==1)
+           {
+            alert("please allow access to geolocation")
+           }  
+           else{
+              alert("position unavailable")
+           }   
+    }
+
+    function display(){
+       var location_data=document.getElementById("location").value
+       console.log(location_data)
+    }
+    const options ={
+        enableHighAccuracy:true,
+        timeout:6000,
+        maximumAge:0,
+
+
+    };
+   const id= navigator.geolocation.getCurrentPosition(success,error,options);
+</script>
+</html>

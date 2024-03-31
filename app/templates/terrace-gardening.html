@@ -1,0 +1,263 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Terrace Gardening Services</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{% static 'images/icons/planet-earth.png'%}" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/iconic/css/material-design-iconic-font.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/linearicons-v1.0.0/icon-font.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/slick/slick.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/MagnificPopup/magnific-popup.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <!--===============================================================================================-->
+    <style>
+        .container {
+            max-height: 450px; 
+        }    </style>
+</head>
+
+<body class="animsition">
+
+    <!-- Header -->
+    <header class="header-v4">
+        <!-- Header desktop -->
+        <div class="container-menu-desktop">
+            <!-- Topbar -->
+            <div class="top-bar  fixed-top">
+                <div class="content-topbar flex-sb-m h-full container">
+                    <div class="left-top-bar">
+                    </div>
+
+                    <div class="right-top-bar flex-w h-full">
+                        <a href="#" class="flex-c-m trans-04 p-lr-25">
+                            Help & FAQs
+                        </a>
+
+                        <a href="#" class="flex-c-m trans-04 p-lr-25">
+                            {{ username }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wrap-menu-desktop how-shadow1">
+                <nav class="limiter-menu-desktop container">
+                    <!-- Logo desktop -->
+                    <a  class="logo">
+                        <img src="{% static 'images/icons/planet-earth.png' %}" alt="IMG-LOGO">
+                    </a>
+
+                    <!-- Menu desktop -->
+                    <div class="menu-desktop">
+						<ul class="main-menu">
+						
+
+							<li class="active-menu">
+								<a href="{% url 'shop' %}">Shop</a>
+							</li>
+
+							<li>
+								<a >Services</a>
+								<ul class="sub-menu">
+									<li><a href="{% url 'terrace-gardening' %}">Terrace Gardening</a></li>
+									<li><a href="{% url 'maintainence_home' %}">Garden Maintainence</a></li>
+									<li><a href="{% url 'landscaping' %}">Landscaping</a></li>
+								</ul>
+							</li>
+
+							<li>
+								<a href="{% url 'infohub'%}">Information Hub</a>
+							</li>
+
+							<li>
+								<a href="{% url 'blog' %}">Blog</a>
+							</li>
+
+							<li>
+								<a href="{% url 'suggestion' %}">Suggestions</a>
+							</li>
+							<li>
+								<a href="{% url 'video' %}">Guide</a>
+								
+							</li>
+							<li>
+								<a href="contact.html">Calculators</a>
+								<ul class="sub-menu">
+									<li><a href="{% url 'soil'%}">Pot mix</a></li>
+									<li><a href="{% url 'mulch'%}">Mulch</a></li>
+									<li><a href="{% url 'space'%}">Plant Spacing</a></li>
+								</ul>
+							</li>
+						</ul>
+						
+						</div>
+                </nav>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- Content -->
+    <!-- Content -->
+    <section class="bg0 p-t-23 p-b-140">
+        <div class="container" >
+            <!-- Terrace Gardening Content -->
+            <div class="row p-b-148">
+                <div class="col-md-5 col-lg-4">
+                    <!-- Placeholder image (replace 'your-image.jpg' with your actual image file) -->
+                    <img src="{% static 'images/terrace_garden.jpg' %}" alt="Terrace Gardening" class="img-fluid">
+                </div>
+                <div class="col-md-7 col-lg-8">
+                    <div class="p-t-7 p-r-85 p-r-15-lg p-r-0-md">
+                        <h2 class="m-text20 p-b-5">
+                            Terrace Gardening Services
+                        </h2>
+
+                        <p class="p-b-32">
+                            Terrace gardening is an excellent way to transform your rooftop or balcony into a green
+                            oasis.
+                            Whether you have limited space or simply want to enjoy the benefits of growing your own
+                            plants,
+                            terrace gardening is the perfect solution.
+                        </p>
+
+                        <p class="p-b-32">
+                            At our gardening service, we offer expert guidance and assistance in setting up and
+                            maintaining your
+                            terrace garden. From selecting the right plants for your climate to providing tips on proper
+                            care and
+                            maintenance, our team is here to help you create a beautiful and thriving space.
+                        </p>
+
+                        <!-- Add more content as needed -->
+
+                        <div class="p-b-32" style="display: flex; justify-content: space-between; align-items: center;">
+                            <button class="btn-view-summary">
+                                <a href="{% url 'terrace-details' %}">
+                                    Book a Visit
+                                </a>
+                            </button>
+
+                            <button class="btn-view-summary">
+                                <a href="{% url 'view_summary' 'Terrace_Gardening' %}">
+                                    View Meeting Summary and Proposal
+                                </a>
+                            </button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div >
+            <h2 style="text-align: center ;">
+                How Does It Work
+            </h2>
+        
+            <ol class="step-by-step">
+                <li><span>1</span> <b>Site Assessment </b><p> Our team will visit your location to assess the available space, environmental conditions, and other factors essential for setting up a successful terrace garden. During the assessment, we'll take into account sunlight exposure, soil quality, drainage systems, existing structures, and any specific requirements or constraints you may have.
+                </p></li>
+                <li><span>2</span> <b>Design and Planning</b> <p>Once we have assessed your site, our team dives into the design and planning phase specifically tailored for terrace gardening. We meticulously craft a design that maximizes your available space, optimizes sunlight exposure, and enhances the overall aesthetics of your terrace garden. Our planning process includes selecting the perfect plants for your climate and preferences, creating a layout that promotes healthy growth and accessibility, and integrating sustainable practices such as water-efficient irrigation systems and eco-friendly materials. </p></li>
+                <li><span>3</span> <b>Materials and Procurement</b> <p>After finalizing the design, we move on to the materials and procurement phase for your terrace garden project. Our team carefully selects high-quality materials such as soil, compost, pots, planters, seeds, fertilizers, and any specialized equipment required based on your garden's design and plant selection. We prioritize eco-friendly and sustainable materials to ensure the long-term health and resilience of your garden. Our procurement process includes sourcing materials from trusted suppliers, verifying product quality, and ensuring timely delivery to your location, so you can start your terrace gardening journey smoothly and with confidence.</p></li>
+                <li><span>4</span><b> Installation </b><p>Our experienced team will skillfully install your terrace garden, including preparing the area, setting up irrigation, planting, and ensuring proper drainage and ventilation. We focus on detail and follow best practices for a vibrant and sustainable green space.</p></li>
+            </ol>
+        </div>
+    
+    </section>
+
+
+    <!-- Footer -->
+    <!-- <footer class="footer-v1 bg6 p-t-148 p-b-20"> -->
+        <!-- Add your footer content here -->
+    <!-- </footer> -->
+
+</body>
+<style>
+    /* Add your custom styles here */
+
+
+.btn-view-summary {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: rgb(22, 184, 76);
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+}
+
+
+.btn-view-summary:hover {
+    background-color:rgb(177, 176, 176);
+}
+
+.btn-view-summary {
+    color: #45a049;
+    border: 1px solid #45a049;
+    background-color: transparent;
+}
+
+.step-by-step {
+    list-style-type: none;
+    padding: 0;
+}
+
+.step-by-step li {
+    margin-bottom: 15px;
+    padding-left: 25px;
+    position: relative;
+    font-size: 16px;
+}
+
+.step-by-step li span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgb(22, 184, 76);
+    color: #fff;
+    text-align: center;
+    line-height: 20px;
+    position: absolute;
+    left: 0;
+    top: 2px;
+}
+.step-by-step li p {
+    margin-top: 5px;
+    font-size: 16px;
+    color: #666;
+}
+
+
+
+</style>
+</html>

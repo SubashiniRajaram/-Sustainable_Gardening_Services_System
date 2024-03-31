@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>guide</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="icon" type="image/png" href="{% static 'images/icons/planet-earth.png'%}" />
+
+    <style>
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: row;
+            margin-top: 8%;
+            margin-left: 13%;
+            width: 70%;
+        }
+
+        .card img {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            margin-left: 2%;
+            margin-top: 2%;
+            margin-bottom: 2%;
+
+           
+        }
+
+        .card .details {
+           padding: 10px; 
+            flex: 1;
+            margin-left: 8%;
+        }
+        .view-more {
+            background-color:#36768c;
+            border-color: #007bff;
+            color: #fff;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .view-more:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+            color: #fff;
+        }
+           </style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" >Guide </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'video'%}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                
+             
+                <!-- <li class="nav-item active dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Pesticides
+                    </a>
+                   
+                </li> -->
+               
+            </ul>
+            <form class="form-inline my-2 my-lg-0" method="post" action="search_guide" >
+                {% csrf_token %}
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"  id="search_guide" name="search_guide">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+        
+
+        <ul>
+            {% for data in guide_list %}
+            <li class="card">
+                    <div class="details">
+                        <h3>{{ data.common_name }}</h3>
+                        <p>Scientific Name:{{ data.scientific_name }}</p>
+                        <strong>Section:</strong> <br>
+                        {% for section in data.section %}
+                            <strong>Type:</strong> {{ section.type }} <br>
+                            <strong>Description:</strong> {{ section.description }} <br>
+                        {% endfor %}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        
+        
+    </div>
+</body>
+</html>

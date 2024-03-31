@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+<body style="background-color: rgb(231, 228, 225);">
+   
+    <div class="wrapper"  style="background-color: rgb(65, 136, 230);">
+         <form action="postsignup" method="post">
+            
+            {% csrf_token %}
+            <h1>Register</h1>
+           
+            <div class="input-box">
+                <input type="text" placeholder="Enter name" name="name" required>
+                <i class='bx bxs-user'></i>
+            </div>
+
+            <div class="input-box">
+                <input type="email" placeholder="Enter email" name="email-signup" required>
+                <i class='bx bxs-user'></i>
+            </div>
+
+            <div class="input-box">
+                <input type="number" placeholder="Enter mobile number" name="pno">
+                <i class='bx bxs-user'></i>
+            </div>
+
+            <div class="input-box">
+                <input type="password" placeholder="Enter password" id="pass-signup" name="pass-signup"  onmouseleave="passlength()">
+                 
+                    <!-- <div class="password-checklist">
+                        <h5 class="checklist-title">password should be</h5>
+                        <ul class="checklist">
+                        <li class="list-item">At least 6 characters long</li>
+                        <li class="list-item">At least 1 number</li>
+                        <li class="list-item">At least 1 special character</li>
+                    </ul>
+                    </div>
+                  -->
+                <box-icon name='lock-alt'></box-icon>
+            </div>
+
+            <div class="input-box">
+                <input type="password" onmouseleave="checkpassword()" placeholder="Confirm password" id="cpass-signup">
+                <box-icon name='lock-alt'></box-icon>
+            </div>
+           
+            <button type="submit" class="btn" >Register  </button>
+            <div class="register-link">
+              <p>Already have an account? <a href="{% url 'signin' %}">Login</a></p>
+            
+            </div>
+         </form>
+    </div>
+
+    <script>
+        function strongpass() {
+            // Define an array of regular expressions for password validation
+            let validationRegex = [
+                { regex: /.{6,}/ },
+                { regex: /[0-9]/ },
+                { regex: /[^A-Za-z0-9]/ }
+            ];
+        
+            // Get the password input value
+            var pass1 = document.getElementById("pass-signup").value;
+        
+            // Loop through each regular expression and check if the password is valid
+            validationRegex.forEach((item, i) => {
+                let isValid = item.regex.test(pass1);
+        
+                // Use classList for manipulating classes and fix the comment syntax
+                if (isValid) {
+                    // passwordChecklist[i].classList.add('checked');
+                    alert("Password is strong");
+                } else {
+                    // passwordChecklist[i].classList.remove('checked');
+                    alert("Password is weak");
+                }
+            });
+        }
+        
+       
+        function checkpassword()
+        {
+            var pass1=document.getElementById("pass-signup").value
+            var pass2=document.getElementById("cpass-signup").value
+
+            if(pass1==pass2)
+            {
+
+            }
+            else{
+                alert("password mismatch")
+            }
+        }
+
+        function passlength()
+        {
+            var pass = document.getElementById("pass-signup").value
+            if(pass.length<6)
+            {
+                alert("password must be atleast 6 characters long ")
+            }
+           
+        }
+    </script>
+</body>
+</html>

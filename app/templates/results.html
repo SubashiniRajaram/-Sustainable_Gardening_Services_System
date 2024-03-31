@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+    <style>
+        /* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('static/images/e.jpg');
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Transparent white background */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.result {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex; /* Flexbox layout */
+    align-items: center; /* Center items vertically */
+}
+
+.result img {
+    width: 150px; /* Limit image width */
+    height: 150px;
+    margin-right: 20px; /* Space between image and details */
+    border-radius: 5px; /* Rounded corners */
+}
+
+.result h5 {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.result p {
+    color: #0d0b0b;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.message {
+    background-color: #9ce3ab;
+    color: white;
+    font-weight: 700;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.message a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.message a:hover {
+    text-decoration: underline;
+}
+     
+h2{
+    text-align: center;
+}
+h4 a{
+    color: #0d0b0b;
+    background-color:  rgba(209, 227, 222, 0.8);
+    text-decoration: None;
+    border: solid 1px black;
+    width: 60px;
+    text-align: center;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h4><a href="{% url 'suggestion' %}" style="float: left;"> Home</a> </h4>
+        {% if data %}
+        <h2>Plants Matching Your Preferences 🪴</h2>
+            {% for item in data %}
+                <div class="result">
+                    <img src="{{item.image}}" alt="image">
+                    <div>
+                        <h5>{{ item.common_name }}</h5>
+                        <p>Scientific Name: {{ item.scientific_name }}</p>
+                        <p>Type: {{ item.type }}</p>
+                        <p>Cycle: {{ item.cycle }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="message">
+                <p>No plants matching your preferences found.</p>
+                <p>Give it another go! <a href="{% url 'quiz' %}">Revise your answers</a> and let's find the perfect match.</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

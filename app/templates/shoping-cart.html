@@ -1,0 +1,431 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Product</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{% static 'images/icons/planet-earth.png'%}" />
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css'%}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css'%}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/iconic/css/material-design-iconic-font.min.css'%}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/linearicons-v1.0.0/icon-font.min.css'%}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css'%}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css'%}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css'%}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/slick/slick.css'%}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/MagnificPopup/magnific-popup.css'%}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.css'%}">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}">
+	<!--===============================================================================================-->
+</head>
+
+<body class="animsition">
+
+	<!-- Header -->
+	<header class="header-v4">
+		<!-- Header desktop -->
+		<div class="container-menu-desktop">
+			<!-- Topbar -->
+			<div class="top-bar fixed-top">
+				<div class="content-topbar flex-sb-m h-full container">
+					<div class="left-top-bar">
+					</div>
+
+					<div class="right-top-bar flex-w h-full">
+						<a href="#" class="flex-c-m trans-04 p-lr-25">
+							Help & FAQs
+						</a>
+
+						<a href="#" class="flex-c-m trans-04 p-lr-25">
+							{{username}}
+
+						</a>
+
+
+					</div>
+				</div>
+			</div>
+
+			<div class="wrap-menu-desktop how-shadow1">
+				<nav class="limiter-menu-desktop container">
+
+					<a  class="logo" style="height: 40px;">
+						<img src="{% static 'images/icons/planet-earth.png' %}" alt="IMG-LOGO">
+					</a>
+					<!-- Menu desktop -->
+					<div class="menu-desktop">
+						<ul class="main-menu">
+						
+
+							<li class="active-menu">
+								<a href="{% url 'shop' %}">Shop</a>
+							</li>
+
+							<li>
+								<a >Services</a>
+								<ul class="sub-menu">
+									<li><a href="{% url 'terrace-gardening' %}">Terrace Gardening</a></li>
+									<li><a href="{% url 'maintainence_home' %}">Garden Maintainence</a></li>
+									<li><a href="{% url 'landscaping' %}">Landscaping</a></li>
+								</ul>
+							</li>
+
+							<li>
+								<a href="{% url 'infohub'%}">Information Hub</a>
+							</li>
+
+							<li>
+								<a href="{% url 'blog' %}">Blog</a>
+							</li>
+
+							<li>
+								<a href="{% url 'suggestion' %}">Suggestions</a>
+							</li>
+							<li>
+								<a href="{% url 'video' %}">Guide</a>
+								
+							</li>
+							<li>
+								<a >Calculators</a>
+								<ul class="sub-menu">
+									<li><a href="{% url 'soil'%}">Pot mix</a></li>
+									<li><a href="{% url 'mulch'%}">Mulch</a></li>
+									<li><a href="{% url 'space'%}">Plant Spacing</a></li>
+								</ul>
+							</li>
+						</ul>
+						
+						</div>
+						
+						<div class="wrap-icon-header flex-w flex-r-m">
+							<!-- <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+								<i class="zmdi zmdi-search"></i>
+							</div>
+	                        -->
+							<a  href="{% url 'showcart'%}" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11  js-show-cart">
+								
+								<i class="zmdi zmdi-shopping-cart"></i>
+							</a>
+	
+							<a  class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 "
+								>
+								<i class="zmdi zmdi-favorite-outline"></i>
+							</a>
+					</div>
+
+					
+				</nav>
+			</div>
+		</div>
+	</header>
+
+	<!-- Cart -->
+	<div class="wrap-header-cart js-panel-cart">
+		<div class="s-full js-hide-cart"></div>
+
+		<div class="header-cart flex-col-l p-l-65 p-r-25">
+			<div class="header-cart-title flex-w flex-sb-m p-b-8">
+				<span class="mtext-103 cl2">
+					Your Cart
+				</span>
+
+				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
+					<i class="zmdi zmdi-close"></i>
+				</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+
+	<!-- breadcrumb -->
+	<div class="container">
+		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+			<a href="{% url 'shop'%}" class="stext-109 cl8 hov-cl1 trans-04">
+				Home
+				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+			</a>
+
+			<span class="stext-109 cl4">
+				Shoping Cart
+			</span>
+		</div>
+	</div>
+
+
+	<!-- Shoping Cart -->
+	<form class="bg0 p-t-75 p-b-85">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
+					<div class="m-l-25 m-r--38 m-lr-0-xl">
+						<div class="wrap-table-shopping-cart">
+							<table class="table-shopping-cart">
+								<tr class="table_head">
+									<th class="column-1">Product</th>
+									<th class="column-2"></th>
+									<th class="column-3">Price</th>
+									<th class="column-4">Quantity</th>
+									<th class="column-5">Total</th>
+									<th class="column-6"></th>
+									<th class="column-7"></th>
+								</tr>
+								{% for key,data in cart_data.items%}
+								<tr class="table_row">
+									<td class="column-1">
+										<div class="how-itemcart1">
+											<img src="{% static data.image %}" alt="IMG">
+										</div>
+									</td>
+									<td class="column-2">{{data.product_name}}</td>
+									<td class="column-3"> Rs{{data.price}}</td>
+									<td class="column-4">
+										<div class="wrap-num-product flex-w m-r-20 m-tb-10">
+											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m"
+												onclick="decrementQuantity('{{ key }}','{{data.price}}')">
+												<i class="fs-16 zmdi zmdi-minus"></i>
+											</div>
+
+											<input class="mtext-104 cl3 txt-center num-product" type="number"
+												name="num-product-{{ key }}" id="num-product-{{ key }}"
+												value="{{data.quantity}}">
+
+											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m"
+												onclick="incrementQuantity('{{ key }}','{{data.price}}')">
+												<i class="fs-16 zmdi zmdi-plus"></i>
+											</div>
+										</div>
+									</td>
+									
+
+
+									<td class="column-5" id="total-{{ key }}">
+										Rs {{data.total}}
+									</td>
+
+									<td class="column-6">
+										<button
+											class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer"
+											onclick="updateCart('{{ data.product_name }}', '{{ data.price }}', '{{ key }}')"
+											id="update-cart-btn-{{ key }}">
+											&#10003; 
+										</button>
+									</td>
+
+									<td class="column-7">
+										<div class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer"
+											onclick="removeFromCart('{{ key }}') ">
+											X
+										</div>
+									</td>
+									
+
+								</tr>
+								{% endfor%}
+
+							</table>
+						</div>
+
+						<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
+							<div class="flex-w flex-m m-r-20 m-tb-5">
+								<input class="stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5" type="text"
+									name="coupon" placeholder="Coupon Code">
+
+								<div
+									class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">
+									Apply coupon
+								</div>
+							</div>
+
+
+							
+
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
+					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
+						<h4 class="mtext-109 cl2 p-b-30">
+							Cart Totals
+						</h4>
+
+						<div class="flex-w flex-t bor12 p-b-13">
+							<div class="size-208">
+								<span class="stext-110 cl2">
+									Total:     Rs.
+								</span>
+							</div>
+
+							<div class="size-209">
+								<span class="mtext-110 cl2" id="subtotal">
+									{{totalprice}}
+								</span>
+							</div>
+						</div>
+
+												<a  href="{% url 'checkout'%}?amount={{ totalprice }}" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+							Proceed to checkout
+						</a>
+					</div> 
+				</div>
+			</div>
+		</div>
+	</form>
+
+
+
+
+	<!-- Footer -->
+	<footer class="bg3 p-t-75 p-b-32">
+		<div class="container">
+
+
+		</div>
+	</footer>
+
+
+	<!-- Back to top -->
+	<div class="btn-back-to-top" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<i class="zmdi zmdi-chevron-up"></i>
+		</span>
+	</div>
+
+	<script>
+
+		function removeFromCart(key) {
+			// Construct the URL for the removal endpoint
+			var removeUrl = "{% url 'cartremove' %}?";
+			removeUrl += "key=" + encodeURIComponent(key);
+
+			// Redirect to the constructed URL
+			window.location.href = removeUrl;
+		}
+
+		function updateCart(productName, productPrice, key) {
+			var quantity = document.getElementById("num-product-" + key).value;
+
+			// Make an AJAX call to update the cart on the server
+			fetch(`/update_cart/?name=${encodeURIComponent(productName)}&price=${encodeURIComponent(productPrice)}&quantity=${encodeURIComponent(quantity)}&key=${encodeURIComponent(key)}`)
+				.then(response => response.json())
+				.then(data => {
+					if (data.status === 'success') {
+						console.log('Cart updated successfully');
+						
+					} else {
+						console.error('Failed to update cart');
+					}
+				})
+				.catch(error => {
+					console.error('Error updating cart:', error);
+				});
+		}
+
+
+
+
+
+
+		function incrementQuantity(key, price) {
+			var num = document.getElementById("num-product-" + key);
+			num.value = parseInt(num.value) + 1;
+			updateTotal(key, price, num.value);
+			var total =document.getElementById("subtotal")
+			var newtotal = parseInt(total.innerText)+parseInt(price)
+			total.textContent=newtotal
+			console.log(parseInt(total.innerText))
+			console.log(newtotal)
+			
+		}
+
+		function decrementQuantity(key, price) {
+			var num = document.getElementById("num-product-" + key);
+			num.value = parseInt(num.value) - 1;
+			if (num.value < 1) {
+				num.value = 1; // Ensure quantity doesn't go below 1
+			}
+			updateTotal(key, price, num.value);
+			var total =document.getElementById("subtotal")
+			var newtotal = parseInt(total.innerText)-parseInt(price)
+			total.textContent=newtotal
+		}
+
+		function updateTotal(key, price, quantity) {
+			var totalElement = document.getElementById("total-" + key);
+			var total = price * quantity;
+			totalElement.textContent = "Rs" + total.toFixed(2);
+			
+		}
+	</script>
+
+
+
+
+
+	<!-- ... (remaining HTML code) ... -->
+
+
+	<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+	<script>
+		$(".js-select2").each(function () {
+			$(this).select2({
+				minimumResultsForSearch: 20,
+				dropdownParent: $(this).next('.dropDownSelect2')
+			});
+		})
+	</script>
+	<!--===============================================================================================-->
+	<script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-pscroll').each(function () {
+			$(this).css('position', 'relative');
+			$(this).css('overflow', 'hidden');
+			var ps = new PerfectScrollbar(this, {
+				wheelSpeed: 1,
+				scrollingThreshold: 1000,
+				wheelPropagation: false,
+			});
+
+			$(window).on('resize', function () {
+				ps.update();
+			})
+		});
+	</script>
+	<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+</body>
+
+</html>

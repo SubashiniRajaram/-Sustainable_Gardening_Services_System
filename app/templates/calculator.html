@@ -1,0 +1,268 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <title>Gardening Potmix Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container-forms {
+            display: flex;
+            justify-content: space-between;
+        }
+        .container-forms form {
+            width: 43%;
+            border: solid black;
+            padding: 20px;
+            text-align: center;
+            background-color: rgb(211, 240, 240);
+            height: 390px;
+            margin-left: 40px;
+            margin-right: 40px;
+        }
+        .container-forms form label {
+            display: inline-block;
+            width: 40%;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+        .container-forms form input,
+        .container-forms form select,
+        .container-forms form button {
+            width: 75%;
+            box-sizing: border-box;
+            margin: 0 auto 10px;
+            display: block;
+        }
+        #rectangleFields,
+        #roundFields,
+        #potFields {
+            display: none;
+        }
+        h2 {
+            margin-top: 65px;
+            text-align: center;
+            font-family: sans-serif;
+        }
+        img {
+            height: 350px;
+            width: 400px;
+        }
+        p {
+            justify-content: center;
+        }
+        #mixresult p{
+            text-align: left;
+        }
+        #result {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .container-forms {
+                flex-direction: column;
+            }
+            .container-forms form {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand text-white">calculator</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link text-white" href="{% url 'shop'%}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h2>Gardening Potmix Calculator</h2>
+  <p>Supercharge Your Gardening Journey with Our Potmix Calculators! Easily Estimate Your Soil Needs and Kickstart Your Garden 🌱! Whether you're planting in pots, beds, or containers, our volume calculator has you covered. Plus, discover the perfect mix of ingredients for your custom potting soil with our handy mix calculator</p>
+  <br>
+  <div class="container-forms">
+        <form >
+            <label for="shape">Select Shape:</label>
+            <select id="shape" onchange="handleShapeChange()">
+                <option value="rectangle">Rectangle</option>
+                <option value="round">Round</option>
+                <option value="flowerpot">Flower Pot</option>
+            </select>
+    
+            <div id="rectangleFields" style="display: block;">
+                <label for="length">Enter Length (cm):</label>
+                <input type="number" id="length" placeholder="Length">
+                <label for="width">Enter Width (cm):</label>
+                <input type="number" id="width" placeholder="Width">
+                <label for="depth">Enter Depth (cm):</label>
+                <input type="number" id="depth" placeholder="Depth">
+            </div>
+    
+            <div id="roundFields">
+                <label for="diameter">Enter Diameter (cm):</label>
+                <input type="number" id="diameter" placeholder="Diameter">
+                <label for="roundDepth">Enter Depth (cm):</label>
+                <input type="number" id="roundDepth" placeholder="Depth">
+            </div>
+    
+            <div id="potFields">
+                <label for="tdiameter">Enter Top Diameter (cm):</label>
+                <input type="number" id="tdiameter" placeholder="Top Diameter">
+                <label for="bdiameter">Enter Bottom Diameter (cm):</label>
+                <input type="number" id="bdiameter" placeholder="Bottom Diameter">
+                <label for="potDepth">Enter Depth (cm):</label>
+                <input type="number" id="potDepth" placeholder="Depth">
+            </div>
+                
+            <button type="button" onclick="calculate()">Calculate</button>
+            <div id="result" style="display: none;">
+                <p>
+                   
+                </p>
+                  </div>
+            </form>
+        <form >
+            <label for="quantity">potting mix quantity(kg):</label>
+            <input type="number" id="quantity">
+            <p >You need the following</p>
+            <div id="mixresult">           
+                <p style="text-align: left;" title="Fiber extracted from the husk of coconuts">
+                   cococoir:
+                </p>
+                <p style="text-align: left;" title="Mineral used in gardening soil for moisture retention and aeration">
+                    Vermiculate:
+                 </p>
+                 <p style="text-align: left;" title="Worm casting/organic fertilizer for nutrition">
+                    Compost:
+                 </p>
+                 <p style="text-align: left;" title="lightweight material added to soil to enhance aeration and drainage, ">
+                    Perlite:
+                 </p>
+                 <p style="text-align: left;">
+                    Sand :
+                 </p>
+                 
+            </div>
+            <button type="button" onclick="potmix_calculate()">Calculate</button>
+
+        </form>
+    </div>
+    <br>
+    <h3 style="text-align: center;">Gardening Soil Tips </h3>
+    <p>
+        Knowing your soil type is essential for successful gardening 🌱. Whether you have sandy, clayey, or loamy soil, each type impacts drainage, nutrient retention, and aeration. Regularly testing your soil's pH and nutrient levels is like giving your garden a health check-up 🌿. It helps you determine if any amendments are needed to ensure optimal plant growth.
+        Adding organic matter such as compost or aged manure enriches your soil 🌻. It boosts fertility, improves structure, and enhances moisture retention. Applying mulch to your garden beds acts as a protective blanket 🌾. It conserves soil moisture, suppresses weeds, and gradually enhances soil health as it decomposes.
+        Avoiding soil compaction is crucial for root health 🌳. Minimize walking or working on wet soil to prevent compaction, which can hinder root growth and reduce aeration. Ensuring good drainage is also vital 🌧️. Amend heavy clay soils with organic matter or use raised beds to prevent waterlogging and root rot.
+        Rotate crops in your garden 🔄 to prevent soil nutrient depletion and reduce the risk of pests and diseases. Incorporating cover crops during the off-season protects and enriches your soil 🌿. It adds nitrogen, prevents erosion, and supports soil health. Be mindful not to over-fertilize your garden 🚫🌱. Use fertilizers sparingly and follow recommended rates to prevent nutrient imbalances and environmental harm.
+        Lastly, monitor soil moisture levels regularly and water your garden appropriately 🚿. Aim for consistent moisture levels, avoiding both drought stress and waterlogging for different plant types. By following these practices, you'll create a thriving garden with healthy, happy plants!
+    </p>
+    <script>
+            function handleShapeChange() {
+                var shapeSelect = document.getElementById("shape");
+                var selectedShape = shapeSelect.value;
+                var rectangleFields = document.getElementById("rectangleFields");
+                var roundFields = document.getElementById("roundFields");
+                var potFields = document.getElementById("potFields");
+    
+                if (selectedShape === "rectangle") {
+                    rectangleFields.style.display = "block";
+                    roundFields.style.display = "none";
+                    potFields.style.display = "none";
+                } else if (selectedShape === "round") {
+                    rectangleFields.style.display = "none";
+                    roundFields.style.display = "block";
+                    potFields.style.display = "none";
+                } else {
+                    rectangleFields.style.display = "none";
+                    roundFields.style.display = "none";
+                    potFields.style.display = "block";
+                }
+            }
+    
+            function calculate() {
+                var shapeSelect = document.getElementById("shape");
+                var selectedShape = shapeSelect.value;
+                var volume = 0;
+                var result=document.getElementById("result")
+    
+                if (selectedShape === "rectangle") {
+                    var length = parseFloat(document.getElementById("length").value);
+                    var width = parseFloat(document.getElementById("width").value);
+                    var depth = parseFloat(document.getElementById("depth").value);
+    
+                    if (!isNaN(length) && !isNaN(width) && !isNaN(depth)) {
+                        volume = length * width * depth;
+                        document.getElementById("result").innerText = "Volume (Rectangle): " + volume.toFixed(2) + " cubic cm";
+                    } else {
+                        document.getElementById("result").innerText = "Please enter valid numeric values for length, width, and depth.";
+                    }
+    
+                } else if (selectedShape === "round") {
+                    var diameter = parseFloat(document.getElementById("diameter").value);
+                    var roundDepth = parseFloat(document.getElementById("roundDepth").value);
+    
+                    if (!isNaN(diameter) && !isNaN(roundDepth)) {
+                        volume = Math.PI * Math.pow(diameter / 2, 2) * roundDepth;
+                        document.getElementById("result").innerText = "Volume (Round): " + volume.toFixed(2) + " cubic cm";
+                    } else {
+                        document.getElementById("result").innerText = "Please enter valid numeric values for diameter and depth.";
+                    }
+                } else {
+                    var bdiameter = parseFloat(document.getElementById("bdiameter").value);
+                    var tdiameter = parseFloat(document.getElementById("tdiameter").value);
+                    var potDepth = parseFloat(document.getElementById("potDepth").value);  
+                    if (!isNaN(bdiameter) && !isNaN(potDepth) && !isNaN(tdiameter)) {
+                        volume = (1/3) * Math.PI * potDepth * (Math.pow(bdiameter / 2, 2) + tdiameter / 2 * bdiameter / 2 + Math.pow(tdiameter / 2, 2));
+                        document.getElementById("result").innerText = "Volume (Flower Pot): " + volume.toFixed(2) + " cubic cm";
+                    } else {
+                        document.getElementById("result").innerText = "Please enter valid numeric values for diameter and depth.";
+                    }    
+                }
+    
+               
+                var soilAmount = (volume * 0.0013).toFixed(3);
+                document.getElementById("result").innerText += "\nAmount of potmix to Buy: " + soilAmount + " kg";
+                result.textContent="You need "+soilAmount+"kg of potmix"
+                result.style.display="block"
+    
+            }
+
+            function potmix_calculate() {
+                var amount = parseFloat(document.getElementById("quantity").value);
+                var unit = amount / 5;
+                var coir = unit * 2;
+                var compost = unit;
+                var vermiculite = unit;
+                var perlite = unit / 2;
+                var sand = unit / 2;
+    
+                var result = document.getElementById("mixresult");
+                result.innerHTML = `
+                    <p>CocoCoir: ${coir.toFixed(2)} kg</p>
+                    <p>Vermiculite: ${vermiculite.toFixed(2)} kg</p>
+                    <p>Compost: ${compost.toFixed(2)} kg</p>            
+                    <p>Perlite: ${perlite.toFixed(2)} kg</p>
+                    <p>Sand: ${sand.toFixed(2)} kg</p>
+                `;
+            }
+        </script>
+    
+</body>
+</html>

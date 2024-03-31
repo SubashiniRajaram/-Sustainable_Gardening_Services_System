@@ -1,0 +1,258 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" type="image/png" href="{% static 'images/icons/planet-earth.png'%}" />
+
+    <title>Maintenance Services</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="{% static 'images/icons/favicon.png' %}" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/iconic/css/material-design-iconic-font.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/linearicons-v1.0.0/icon-font.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/slick/slick.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/MagnificPopup/magnific-popup.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <!--===============================================================================================-->
+    <style>
+        .container {
+            max-height: 450px; 
+        } 
+       
+    </style>
+</head>
+
+<body class="animsition">
+
+    <!-- Header -->
+    <header class="header-v4">
+        <!-- Header desktop -->
+        <div class="container-menu-desktop">
+            <!-- Topbar -->
+            <div class="top-bar  fixed-top">
+                <div class="content-topbar flex-sb-m h-full container">
+                    <div class="left-top-bar">
+                    </div>
+
+                    <div class="right-top-bar flex-w h-full">
+                        <a href="#" class="flex-c-m trans-04 p-lr-25">
+                            Help & FAQs
+                        </a>
+
+                        <a href="#" class="flex-c-m trans-04 p-lr-25">
+                            {{ username }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wrap-menu-desktop how-shadow1">
+                <nav class="limiter-menu-desktop container">
+                    <!-- Logo desktop -->
+                    <a href="#" class="logo">
+                        <img src="{% static 'images/icons/logo-01.png' %}" alt="IMG-LOGO">
+                    </a>
+
+                    <!-- Menu desktop -->
+                    <div class="menu-desktop">
+						<ul class="main-menu">
+						
+
+							<li class="active-menu">
+								<a href="{% url 'shop' %}">Shop</a>
+							</li>
+
+							<li>
+								<a >Services</a>
+								<ul class="sub-menu">
+									<li><a href="{% url 'terrace-gardening' %}">Terrace Gardening</a></li>
+									<li><a href="{% url 'maintainence_home' %}">Garden Maintainence</a></li>
+									<li><a href="{% url 'landscaping' %}">Landscaping</a></li>
+								</ul>
+							</li>
+
+							<li>
+								<a href="{% url 'infohub'%}">Information Hub</a>
+							</li>
+
+							<li>
+								<a href="{% url 'blog' %}">Blog</a>
+							</li>
+
+							<li>
+								<a href="{% url 'suggestion' %}">Suggestions</a>
+							</li>
+							<li>
+								<a href="{% url 'video' %}">Guide</a>
+								
+							</li>
+							<li>
+								<a href="contact.html">Calculators</a>
+								<ul class="sub-menu">
+									<li><a href="{% url 'soil'%}">Pot mix</a></li>
+									<li><a href="{% url 'mulch'%}">Mulch</a></li>
+									<li><a href="{% url 'space'%}">Plant Spacing</a></li>
+								</ul>
+							</li>
+						</ul>
+						
+						</div>
+                </nav>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- Content -->
+    <!-- Content -->
+    <section class="bg0 p-t-23 p-b-140">
+        <div class="container">
+            <div class="row p-b-148">
+                <div class="col-md-5 col-lg-4">
+                    <!-- Placeholder image (replace 'your-image.jpg' with your actual image file) -->
+                    <img src="{% static 'images/maintainence_desc.jpg' %}" alt="garden mainatinence" class="img-fluid" style="width: 95%; height: 78%;">
+                </div>
+                <div class="col-md-7 col-lg-8">
+                    <div class="p-t-7 p-r-85 p-r-15-lg p-r-0-md">
+                        <h2 class="m-text20 p-b-5">
+                            Garden maintenance Services
+                        </h2>
+
+                        <p class="p-b-32">
+                            Our garden maintenance services encompass a comprehensive range of tasks aimed
+                             at preserving the beauty and vitality of your outdoor space. From meticulous lawn 
+                             care practices such as regular mowing, edging, and fertilization to attentive plant care 
+                             involving pruning, shaping, and disease management, 
+                            we ensure that every aspect of your garden thrives.
+                        </p>
+
+                        <p class="p-b-32">
+                            Additionally, we specialize in effective weed control methods, employing strategies to eradicate unwanted vegetation while safeguarding the health of your plants. Furthermore, we provide mulching services to enhance soil moisture retention and regulate temperature, along with soil testing and seasonal clean-up to maintain
+                             optimal soil health and prepare your garden for changing weather conditions.
+                        </p>
+
+                        <!-- Add more content as needed -->
+
+                        <div class="p-b-32" style="display: flex; justify-content: space-between; align-items: center;">
+                            <button class="btn-view-summary">
+                                <a href="{% url 'maintainence' %}">
+                                    Book a Visit
+                                </a>
+                            </button>
+
+                            <button class="btn-view-summary">
+                                <a href="{% url 'view_summary' 'Garden_Maintainence' %}">
+                                    View Meeting Summary and Proposal
+                                </a>
+                            </button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div >
+            <h2 style="text-align: center ;">
+                How Does It Work
+            </h2>
+        
+            <ol class="step-by-step">
+                <li><span>1</span> <b>Site Assessment </b><p>  Our team conducts a comprehensive assessment of your garden, analyzing soil quality, sunlight exposure, drainage, and plant health to create a tailored maintenance plan.</p></li>
+                <li><span>2</span> <b>Maintenance Plan Creation</b> <p> Based on the assessment, we develop a detailed maintenance plan covering tasks like mowing, pruning, watering, fertilizing, pest control, and seasonal care to keep your garden vibrant and healthy year-round.</p></li>
+                <li><span>3</span> <b>Regular Maintenance Visits</b> <p>Our skilled professionals make regular visits to implement the maintenance plan, ensuring that your garden receives the care it needs to thrive, including timely adjustments based on seasonal changes and plant requirements.</p></li>
+            </ol>
+        </div>
+    
+        
+    </section>
+
+
+    
+</body>
+<style>
+    /* Add your custom styles here */
+
+
+.btn-view-summary {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: rgb(22, 184, 76);
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+}
+
+
+.btn-view-summary:hover {
+    background-color:rgb(177, 176, 176);
+}
+
+.btn-view-summary {
+    color: #45a049;
+    border: 1px solid #45a049;
+    background-color: transparent;
+}
+
+.step-by-step {
+    list-style-type: none;
+    padding: 0;
+}
+
+.step-by-step li {
+    margin-bottom: 15px;
+    padding-left: 25px;
+    position: relative;
+    font-size: 16px;
+}
+
+.step-by-step li span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgb(22, 184, 76);
+    color: #fff;
+    text-align: center;
+    line-height: 20px;
+    position: absolute;
+    left: 0;
+    top: 2px;
+}
+.step-by-step li p {
+    margin-top: 5px;
+    font-size: 16px;
+    color: #666;
+}
+
+
+
+</style>
+</html>

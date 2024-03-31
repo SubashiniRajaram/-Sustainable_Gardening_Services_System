@@ -1,0 +1,215 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <title>Mulch Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            border: solid black;
+            padding: 20px; /* Add padding for better appearance */
+            text-align: center; /* Center align form contents */
+            width: 75%;
+            background-color: rgb(245, 249, 249);
+            margin-left: 10%;
+            height:350px;
+
+        }
+        label {
+            display: inline-block;
+            width: 40%; /* Adjust label width */
+            text-align: left; /* Align label text to the left */
+            margin-bottom: 5px; /* Add space below each label */
+           color: black;
+        }
+        input, select, button {
+            width: 30%; 
+            box-sizing: border-box; 
+            margin: 0 auto 10px; 
+            display: block; 
+        }
+        #rectangleFields, #roundFields, #potFields {
+            display: none;
+        }
+        h2 {
+            margin-top: 65px;
+            text-align: center; 
+            font-family: sans-serif;
+        }
+        img{
+            height: 300px;
+            width: 400px;
+        }
+        p{
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand text-white" >calculator</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link text-white" href="{% url 'shop'%}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#"></a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <h2>Mulch Calculator</h2>
+    <p>Welcome to MulchMagic: Easily Estimate Your Mulch Needs and Transform Your Garden 🌿. Select Your Garden Dimensions, Input Mulch Depth, and Let MulchMagic Simplify Your Gardening Journey!</p>
+
+    <form>
+        <img  src="{% static 'images/mulching.jpg' %}" style="float: left;">
+
+        <label for="shape">Select Type of mulch:</label>
+        <select id="shape" >
+            <option value="wood">Wood chips</option>
+            <option value="bark">Bark Mulch</option>
+            <option value="straw">Straw</option>
+        </select>
+
+            <label for="length">Enter Length (m):</label>
+            <input type="number" id="length" placeholder="Length">
+            <label for="width">Enter Width (m):</label>
+            <input type="number" id="width" placeholder="Width">
+            <label for="depth">Enter Depth of mulch (inch):</label>
+            <input type="number" id="depth" placeholder="Depth">
+
+        
+            
+        <button type="button" onclick="calculate()">Calculate</button>
+        <div id="result" style="display: none;">
+            <p></p>
+  </div>
+
+    </form>
+
+    <p id="result"></p>
+    <h3 style="text-align: center;">Mulching Tips </h3>
+    <p>
+        <ul>
+            <li> 🌿 <b>Choose the Right Mulch</b>: Select a mulch type that suits your garden needs and climate, such as organic mulches like wood chips, bark, or compost, or inorganic options like gravel or rubber mulch. Consider factors like moisture retention, weed suppression, and aesthetic appeal.
+                <br>     <br>
+           </li>
+            <li>🌞 <b>Apply Adequate Depth</b>: Apply mulch to a depth of 2-4 inches to provide sufficient insulation, retain moisture, and suppress weeds effectively. Avoid piling mulch against plant stems or tree trunks to prevent moisture-related issues.
+                <br>
+                <br></li>
+            <li>💦 <b>Water Before Mulching</b>: Water the soil thoroughly before applying mulch to ensure proper hydration of plants and to promote better mulch adherence and effectiveness in retaining moisture.
+                <br>
+                <br>
+                </li>
+            <li>🍃 <b>Refresh Mulch Regularly</b>: Periodically check and refresh mulch layers to maintain the desired depth and benefits. Mulch may decompose over time, especially organic types, so replenishing it helps retain its properties.
+                <br>
+                <br></li>
+            <li>🌼 <b>Mulch Around Plants</b>: Spread mulch evenly around plants, leaving a small gap around stems or trunks. This promotes root health, prevents soil erosion, and enhances the overall appearance of your garden.
+                <br>
+                <br></li>
+            <li>🔄 <b>Mulch in Spring or Fall</b>: Apply mulch in spring or fall to help regulate soil temperature, conserve moisture, and protect plant roots from extreme weather conditions.
+                <br>
+                <br>
+                </li>
+            <li>👀 <b>Monitor for Pests</b>: Keep an eye out for pests or fungal growth under mulch layers. Promptly address any issues to prevent damage to plants or the mulch itself.
+                <br>
+                <br>
+                </li>
+            <li>🚫 <b>Avoid Over-Mulching</b>: Don't over-apply mulch, as excessive layers can hinder water penetration, air circulation, and nutrient exchange in the soil. Maintain the recommended depth for optimal results.
+                <br>
+                <br>
+                </li>
+            <li>🌱<b> Use Mulch Beds</b>: Create defined mulch beds or borders around plants, flower beds, and vegetable gardens to enhance aesthetics, reduce maintenance, and improve soil health.
+                <br>
+                <br></li>
+
+        </ul>
+        By following these mulching tips, you can create a healthy, vibrant garden environment while reducing weed growth, conserving water, and promoting plant growth. Happy gardening! 🌻🌿
+
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       </p>
+
+    <script>
+
+
+        function calculate() {
+            var shapeSelect = document.getElementById("shape");
+            var selectedShape = shapeSelect.value;
+            var volume = 0;
+            var result=document.getElementById("result")
+            var length = parseFloat(document.getElementById("length").value);
+            var width = parseFloat(document.getElementById("width").value);
+            var depth = parseFloat(document.getElementById("depth").value);
+            volume = length * width * depth*0.0254
+
+            if (selectedShape === "wood") {
+                
+                if (!isNaN(length) && !isNaN(width) && !isNaN(depth)) {
+                    volume=volume *300 ;
+                    document.getElementById("result").innerText = "Volume (Rectangle): " + volume.toFixed(2) + " cubic cm";
+                } else {
+                    document.getElementById("result").innerText = "Please enter valid numeric values for length, width, and depth.";
+                }
+
+            } else if (selectedShape === "bark") {
+                if (!isNaN(length) && !isNaN(width) && !isNaN(depth)) {
+                    volume=volume *400 ;
+                    document.getElementById("result").innerText = "Volume (Rectangle): " + volume.toFixed(2) + " cubic cm";
+                } else {
+                    document.getElementById("result").innerText = "Please enter valid numeric values for length, width, and depth.";
+                }
+
+                
+            } else {
+                if (!isNaN(length) && !isNaN(width) && !isNaN(depth)) {
+                    volume=volume *90 ;
+                    document.getElementById("result").innerText = "Volume (Rectangle): " + volume.toFixed(2) + " cubic cm";
+                } else {
+                    document.getElementById("result").innerText = "Please enter valid numeric values for length, width, and depth.";
+                }
+
+            }
+
+           
+            document.getElementById("result").innerText += "\nAmount of Soil to Buy: " + volume + " kg";
+            result.textContent="You need "+volume+"kg of soil"
+            result.style.display="block"
+
+        }
+    </script>
+</body>
+</html>

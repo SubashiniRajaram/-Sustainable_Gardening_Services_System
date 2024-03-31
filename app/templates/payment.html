@@ -1,0 +1,189 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="{% static 'images/icons/planet-earth.png'%}" />
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #title {
+      align-items: center;
+      display: flex;
+      height: 70px;
+      width: 100%;
+      padding-left: 50px;
+    }
+  
+    li {
+      float: left;
+    }
+  
+    a {
+      display: block;
+      color: white;
+      background-color: #1a1c1f;
+      border-color: #007bff;
+      font-weight: bolder;
+      font-family: 'Times New Roman', Times, serif;
+      text-align: center;
+      padding: 5px 20px;
+      font-size: 20px;
+  
+      text-decoration: none;
+    }
+  
+    
+  
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+  
+    .btn-primary {
+      color: #fff;
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+  
+    .btn:hover {
+      color: #fff;
+      background-color: #111;
+      border-color: #007bff;
+    }
+  
+    h3 {
+      font-family: 'Times New Roman', Times, serif;
+      text-align: center;
+      text-decoration: solid;
+      margin-top: 40%;
+      /* font-size: 10px; */
+    }
+    b{
+      margin-top: 90px;
+
+    }
+    table {
+      width: 80%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      margin-left: 110px;
+    }
+  
+    th,
+    td {
+      padding: 10px;
+      border: 1px solid;
+      border-color: rgb(31, 29, 29); 
+      text-align: left;
+    }
+  
+    th {
+      background-color: #242525; 
+      color: white;
+      font-weight: bold;
+    }
+  
+    tr:nth-child(even) {
+      background-color: #f2f2f2; 
+    }
+    .success-message {
+      background-color: white;
+      color: #2a5e2c;
+      padding: 20px;
+      font-size: 1.2em;
+      text-align: center;
+      margin-top: 8%;
+  }
+  .logout{
+    width: 10%;
+    float: right;
+  }
+  form{
+    text-align: center;
+  }
+  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+  integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand text-white" >Payment</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+               
+                <li class="nav-item">
+                    <a class="nav-link text-white"  href="{% url 'shop' %}" >Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" style="float: right;" href="{% url 'home' %}">Logout </a>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+</nav>
+<div class="success-message">
+    
+  {{success}}
+
+</div>
+  <div> 
+    <h3 style="margin-top: 0%;">Your order details</h3><br>
+  </div>
+    <table>    
+    <tr>
+      <th>Product name</th>
+      <th>price</th>
+      <th>Quantity</th>
+      <th>Total</th>
+    </tr>
+    {% for id, value in cart_data.items %}
+    
+      
+      <tr>
+          <td>{{value.product_name}}</td>
+          <td>{{value.price}}</td>
+          <td>{{value.quantity}}</td>
+          <td>{{value.total}}</td>
+      </tr>
+     
+    {% endfor %}
+      <tr>
+        <h4 style="text-align: center;">Amount to pay :Rs {{cart_total}}</h4>
+      </tr>
+  </table>
+   <br>
+   <br>
+
+<form method="post" action="{% url 'payment' %}">
+  {% csrf_token %}
+  <script
+      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+      data-key="{{ publishable_key }}"
+      data-amount={{total}}
+      data-name="Test Payment"
+      data-description="Test Payment"
+      data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+      data-locale="auto"
+      data-upi="true"
+      data-currency="inr">
+  </script>
+</form>
+ 
+</center>
+</body>
+</html>
+
+  

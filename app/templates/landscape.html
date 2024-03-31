@@ -1,0 +1,264 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Terrace Gardening Services</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{% static 'images/icons/planet-earth.png'%}" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/iconic/css/material-design-iconic-font.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/linearicons-v1.0.0/icon-font.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/slick/slick.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/MagnificPopup/magnific-popup.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <!--===============================================================================================-->
+    <style>
+        .container {
+            max-height: 450px; 
+        }       </style>
+</head>
+
+<body class="animsition">
+
+    <!-- Header -->
+    <header class="header-v4">
+        <!-- Header desktop -->
+        <div class="container-menu-desktop">
+            <!-- Topbar -->
+            <div class="top-bar  fixed-top">
+                <div class="content-topbar flex-sb-m h-full container">
+                    <div class="left-top-bar">
+                    </div>
+
+                    <div class="right-top-bar flex-w h-full">
+                        <a href="#" class="flex-c-m trans-04 p-lr-25">
+                            Help & FAQs
+                        </a>
+
+                        <a href="#" class="flex-c-m trans-04 p-lr-25">
+                            {{ username }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wrap-menu-desktop how-shadow1">
+                <nav class="limiter-menu-desktop container">
+                    <!-- Logo desktop -->
+                    <a href="#" class="logo">
+                        <img src="{% static 'images/icons/logo-01.png' %}" alt="IMG-LOGO">
+                    </a>
+
+                    <!-- Menu desktop -->
+                    <div class="menu-desktop">
+						<ul class="main-menu">
+						
+
+							<li class="active-menu">
+								<a href="{% url 'shop' %}">Shop</a>
+							</li>
+
+							<li>
+								<a >Services</a>
+								<ul class="sub-menu">
+									<li><a href="{% url 'terrace-gardening' %}">Terrace Gardening</a></li>
+									<li><a href="{% url 'maintainence_home' %}">Garden Maintainence</a></li>
+									<li><a href="{% url 'landscaping' %}">Landscaping</a></li>
+								</ul>
+							</li>
+
+							<li>
+								<a href="{% url 'infohub'%}">Information Hub</a>
+							</li>
+
+							<li>
+								<a href="{% url 'blog' %}">Blog</a>
+							</li>
+
+							<li>
+								<a href="{% url 'suggestion' %}">Suggestions</a>
+							</li>
+							<li>
+								<a href="{% url 'video' %}">Guide</a>
+								
+							</li>
+							<li>
+								<a href="contact.html">Calculators</a>
+								<ul class="sub-menu">
+									<li><a href="{% url 'soil'%}">Pot mix</a></li>
+									<li><a href="{% url 'mulch'%}">Mulch</a></li>
+									<li><a href="{% url 'space'%}">Plant Spacing</a></li>
+								</ul>
+							</li>
+						</ul>
+						
+						</div>
+                </nav>
+            </div>
+        </div>
+
+    </header>
+
+   
+    <section class="bg0 p-t-23 p-b-140">
+        <div class="container">
+            <div class="row p-b-148">
+                <div class="col-md-5 col-lg-4">
+                    <img src="{% static 'images/landscape.jpg' %}" alt="Terrace Gardening" class="img-fluid" style="height: 70%;">
+                    
+
+                </div>
+                
+                <div class="col-md-7 col-lg-8">
+                    <div class="p-t-7 p-r-85 p-r-15-lg p-r-0-md">
+                        <h2 class="m-text20 p-b-5">
+                            Landscaping Services
+                        </h2>
+
+                        <p class="p-b-32">
+                            Landscaping involves the design and modification of outdoor spaces to enhance their
+                            aesthetic appeal and functionality. Our landscaping services include the creation of
+                            beautiful garden layouts, installation of hardscaping elements such as patios and
+                            pathways, and the addition of water features like ponds and fountains.
+                        </p>
+
+                        <p class="p-b-32">
+                            Our expert team will work closely with you to understand your vision and preferences,
+                            providing tailored solutions to bring your dream outdoor space to life. Whether you
+                            want to create a serene retreat or an entertainment area for gatherings, we're here to
+                            make it happen. Let us transform your outdoor space into a stunning and functional landscape that you'll love for years to come.
+                        </p>
+                        </p>
+
+                        
+    
+    
+
+                        <!-- Add more content as needed -->
+
+                        <div class="p-b-32" style="display: flex; justify-content: space-between; align-items: center;">
+                            <button class="btn-view-summary">
+                                <a href="{% url 'landscape-details' %}">
+                                    Book a Visit
+                                </a>
+                            </button>
+
+                            <button class="btn-view-summary">
+                                <a href="{% url 'view_summary' 'Landscaping' %}">
+                                    View Meeting Summary and Proposal
+                                </a>
+                            </button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div >
+            <h2 style="text-align: center ;">
+                How Does It Work
+            </h2>
+        
+            <ol class="step-by-step">
+                <li><span>1</span> <b>Site Assessment </b><p>  Our team conducts a thorough evaluation of your property, considering factors like soil quality, sunlight exposure, drainage, and existing features to understand the site's potential for landscaping.</p></li>
+                <li><span>2</span> <b>Design and Planning</b> <p>Based on the site assessment, we develop a detailed landscape design that includes plant selection, hardscape elements, irrigation systems, and lighting, tailored to your preferences and budget.</p></li>
+                <li><span>3</span> <b>Materials and Procurement</b> <p>This involves sourcing and acquiring essential materials such as plants, soil, mulch, stones, irrigation systems, and other supplies required for the project. </p></li>
+                <li><span>4</span><b> Installation </b><p>With careful planning in place, we proceed to install the landscaping elements, which may include planting trees, shrubs, and flowers, constructing pathways or retaining walls, installing irrigation systems, and adding decorative features to enhance the overall aesthetic appeal of your outdoor space.</p></li>
+            </ol>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="footer-v1 bg6 p-t-148 p-b-20">
+        <!-- Add your footer content here -->
+    </footer>
+
+</body>
+<style>
+    /* Add your custom styles here */
+
+
+.btn-view-summary {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: rgb(22, 184, 76);
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+}
+
+
+.btn-view-summary:hover {
+    background-color:rgb(177, 176, 176);
+}
+
+.btn-view-summary {
+    color: #45a049;
+    border: 1px solid #45a049;
+    background-color: transparent;
+}
+
+.step-by-step {
+    list-style-type: none;
+    padding: 0;
+}
+
+.step-by-step li {
+    margin-bottom: 15px;
+    padding-left: 25px;
+    position: relative;
+    font-size: 16px;
+}
+
+.step-by-step li span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgb(22, 184, 76);
+    color: #fff;
+    text-align: center;
+    line-height: 20px;
+    position: absolute;
+    left: 0;
+    top: 2px;
+}
+.step-by-step li p {
+    margin-top: 5px;
+    font-size: 16px;
+    color: #666;
+}
+
+
+
+</style>
+</html>
