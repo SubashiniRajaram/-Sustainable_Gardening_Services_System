@@ -42,7 +42,7 @@
                     </div>
                     <div class="inputBx">
                         <span>Mobile Number</span>
-                        <input type="number" name="pno" id="pno"  required>
+                        <input type="number" name="pno" id="pno"  onmouseleave="pnum()" required>
                     </div>
                     <div class="inputBx">
                         <span>Password</span>
@@ -269,6 +269,16 @@
             alert("password must be atleast 6 characters long ")
         }
 
+    }
+
+    function pnum()
+    {
+        var num=document.getElementById("pno").value
+        if(num.length!=10 && num.length>0)
+        {
+            alert(" Mobile Number not valid ")
+
+        }
     }
 </script>
 
