@@ -53,20 +53,19 @@ from django.shortcuts import render
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
-def create_payment_intent(request):
-    amount = 1000  # Amount in cents (e.g., $10.00)
-
-    try:
-        payment_intent = stripe.PaymentIntent.create(
-            amount=amount,
-            currency='usd',
-            payment_method=request.POST.get('payment_method_id'),
-            confirmation_method='manual',
-            confirm=True  # Automatically confirm the PaymentIntent
-        )
-        return JsonResponse({'client_secret': payment_intent.client_secret})
-    except stripe.error.StripeError as e:
-        return JsonResponse({'error': str(e)}, status=400)
+# def create_payment_intent(request):
+#     amount = 1000 
+#     try:
+#         payment_intent = stripe.PaymentIntent.create(
+#             amount=amount,
+#             currency='usd',
+#             payment_method=request.POST.get('payment_method_id'),
+#             confirmation_method='manual',
+#             confirm=True 
+#         )
+#         return JsonResponse({'client_secret': payment_intent.client_secret})
+#     except stripe.error.StripeError as e:
+#         return JsonResponse({'error': str(e)}, status=400)
     
 
 def payment(request):
@@ -154,21 +153,18 @@ def postsignin(request):
         # extract the localId from the user dictionary. 
         session_id = user['localId']
         username = database.child("user-credentials").child(session_id).get().val()['name']
-        # print(username)
-        # print(session_id)
+
         products =database.child('products').child('plants').child('indoor').shallow().get().val()
-        #  print(products)
 
         list_products=[]
         for i in products:
             list_products.append(i)
-        # print(list_products)
+       
         features=[]
         for i in list_products:
             data =database.child('products').child('plants').child('indoor').child(i).get().val()
             features.append(data)
-        # print(features)
-    
+       
         return render(request,'products.html',{'features':features,'username':username})
      
     except:
@@ -250,7 +246,7 @@ def showcart(request):
     pname = request.GET.get('name')
     pprice = request.GET.get('price')
     quantity = request.GET.get('quantity')
-
+    image=request.GET.get('image')
     # Check if the product is already in the cart
     cart_ref = database.child("cart_details").child(session_id)
     cart_data = cart_ref.get().val()
@@ -263,12 +259,13 @@ def showcart(request):
                 # database.child("cart_details").child(session_id).child(key).update({'quantity': str(new_quantity)})
                 # break
     # else:
-    cart=database.child("cart_details").child(session_id).push({'product_name': pname ,'price':pprice,'quantity':quantity})
+    cart=database.child("cart_details").child(session_id).push({'product_name': pname ,'price':pprice,'quantity':quantity,'image':image})
     print(cart)
     # Fetch the updated cart data
     overall_total=0
     updated_cart_data = database.child("cart_details").child(session_id).get().val()
-    for product_id, product_info in  updated_cart_data.items():
+    if updated_cart_data:
+     for product_id, product_info in  updated_cart_data.items():
       price = product_info['price']
       quantity = product_info['quantity']
       total=int(price)*int(quantity)
@@ -276,7 +273,6 @@ def showcart(request):
       overall_total=overall_total+total
     #   priceList.append(total)
     username = database.child("user-credentials").child(session_id).get().val()['name']
-   
      
     return render(request, 'shoping-cart.html', {'cart_data': updated_cart_data,'totalprice':overall_total,'username':username})
 
@@ -284,16 +280,17 @@ def showcart(request):
 
 def showCart(request):
     cartdata = database.child("cart_details").child(session_id).get().val()
-   
     overall_total=0
-    for product_id, product_info in cartdata.items():
-      price = product_info['price']
-      quantity = product_info['quantity']
-      total=int(price)*int(quantity)
-      product_info['total']=total
-      overall_total=overall_total+total
+    if cartdata:
+      for product_id, product_info in cartdata.items():
+       price = product_info['price']
+       quantity = product_info['quantity']
+       total=int(price)*int(quantity)
+       product_info['total']=total
+       overall_total=overall_total+total
     #   priceList.append(total)
-      print(cartdata.items()) 
+    #   print(cartdata.items()) 
+    # print("hii")
     print(cartdata)
     username = database.child("user-credentials").child(session_id).get().val()['name']
 
@@ -391,7 +388,7 @@ def terrace_save(request):
 
     try:
         subject = 'Service confirmation'
-        message = f'Thank you for booking our service. Your booking is scheduled for {date} at {time}. \n\nOur team member,Roshini, will be visiting the site for a site visit. Here are the details:\n\nName: Roshini\n\nPhone: 9942552425.\n\n Happy Gardening'
+        message = f'Thank you for booking our service. Your booking is scheduled for {date} at {time}.Our team member,Roshini, will be visiting the site for a site visit. Here are the details:\n\nName: Roshini\n\nPhone: 9942552425.\n\n Happy Gardening'
         from_email = 'subavachu@gmail.com'
         recipient_list = [email]
 
@@ -441,11 +438,10 @@ def status(request):
 
 def view_summary(request,service_type=None):
  summary= database.child("services").child(service_type).child(session_id).get().val()
- if summary !=None:  
+ if summary != None:  
    for key,value in summary.items():
     if 'summary' in value:
-        summary = value['summary']
-        
+        summary = value['summary']     
    status =  database.child("services").child(service_type).child(session_id).child(key).child("status").get().val()
    print(status)
    if service_type=="Terrace_Gardening" or service_type=="Landscaping":
@@ -622,7 +618,7 @@ def add_post(request):
         url = request.POST.get('url')
         title = request.POST.get('title')
         content = request.POST.get('content')
-        current_date = datetime.date.today().strftime('%Y-%m-%d')
+        current_date = datetime.date.today().strftime('%d-%m-%Y')
         current_time = datetime.datetime.now().time().strftime('%H:%M:%S')
         
         data = {'title': title, 'content': content, 'date': current_date, 'time': current_time,'image':url,'session_id':session_id}
@@ -640,7 +636,7 @@ def add_comment(request,id):
       # print(post_content['title'])
    comment_data=database.child("comments").child(id).get().val()
    length=len(comment_data)
-   data={'title':post_content['title'],'content':post_content['content'],'date':post_content['date'],'time':post_content['time'],'id':id}
+   data={'title':post_content['title'],'content':post_content['content'],'date':post_content['date'],'time':post_content['time'],'id':id,'image':post_content['image']}
    return render(request,'post_detail.html',{'content':data,'comment_data':comment_data,'count':length})
 
 def mypost(request):
@@ -798,15 +794,11 @@ def search_guide(request):
     url = f" https://perenual.com/api/species-care-guide-list?key={api_key}&q={name}"
     response = requests.get(url)
     
-    # Check if the API call was successful
     if response.status_code == 200:
-        # Parse the JSON response
         data = response.json()
         print(data)
-        # Pass the data to the template
         return render(request, 'search_guide.html', {'guide_list': data})
     else:
-        # If the API call was not successful, return an error message
         return render(request, 'error.html', {'error_message': 'Error: Unable to fetch species list'})
     
 def plants_guide(request):
@@ -844,13 +836,10 @@ def results(request):
     sugg_values_str = request.GET.getlist('sugg')
     print("Values passed in the URL:", sugg_values_str)
     
-    # # Join the list elements into a single string
     sugg_values_str = ','.join(sugg_values_str)
     
-    # # Split the string into a list
     sugg_values = sugg_values_str.split(',')
     
-    # # Print the first element of the list
     carelevel=sugg_values[0]
     sunlight=sugg_values[1]
     type=sugg_values[2]
@@ -858,7 +847,6 @@ def results(request):
     flower=sugg_values[4]
     fruit=sugg_values[5]
     pet=sugg_values[6]
-    # print(type,flower,watering,fruit,pet)
      
     indoor=str_to_boolean.get(type)
     flowering=str_to_boolean.get(flower)
@@ -875,7 +863,6 @@ def results(request):
     for value in data:
       print(value.id)
       matchs.append(value)
-    # print(matchs)
     return render(request,'results.html',{'data':matchs})
     
 def quiz(request):
@@ -963,3 +950,32 @@ def deletedonation(request):
     return redirect(reverse('mydonations'))
 
     
+def cancel_booking(request,service_type=None):
+   print("Service type:", service_type)
+   print("Session ID:", session_id)
+
+   if database.child("services").child(service_type).child(session_id).get().val() is not None:
+    booking = database.child("services").child(service_type).child(session_id).remove()
+    print("Booking:", booking)
+
+    if booking is None:
+        if service_type == 'Terrace_Gardening':
+            return render(request, 'terrace-gardening.html', {'msg': "Booking cancelled successfully"})
+        elif service_type == 'Landscaping':
+            return render(request, 'landscape.html', {'msg': "Booking cancelled successfully"})
+        else:
+            return render(request, 'maintainence.html', {'msg': "Booking cancelled successfully"})
+    else:
+       if service_type == 'Terrace_Gardening':
+            return render(request, 'terrace-gardening.html', {'msg': "No Booking Found"})
+       elif service_type == 'Landscaping':
+            return render(request, 'landscape.html', {'msg': "No Booking Found"})
+       else:
+            return render(request, 'maintainence.html', {'msg': "No Booking Found"})
+   else:
+       if service_type == 'Terrace_Gardening':
+            return render(request, 'terrace-gardening.html', {'msg': "No Booking Found"})
+       elif service_type == 'Landscaping':
+            return render(request, 'landscape.html', {'msg': "No Booking Found"})
+       else:
+            return render(request, 'maintainence.html', {'msg': "No Booking Found"})

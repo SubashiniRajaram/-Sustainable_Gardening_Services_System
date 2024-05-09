@@ -139,6 +139,7 @@
   {{success}}
 
 </div>
+
   <div> 
     <h3 style="margin-top: 0%;">Your order details</h3><br>
   </div>
@@ -166,6 +167,7 @@
   </table>
    <br>
    <br>
+   {% if not success %}
 
 <form method="post" action="{% url 'payment' %}">
   {% csrf_token %}
@@ -181,7 +183,7 @@
       data-currency="inr">
   </script>
 </form>
- 
+{% endif %}
 </center>
 </body>
 </html>

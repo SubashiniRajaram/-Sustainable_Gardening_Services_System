@@ -73,8 +73,8 @@
             <div class="wrap-menu-desktop how-shadow1">
                 <nav class="limiter-menu-desktop container">
                     <!-- Logo desktop -->
-                    <a href="#" class="logo">
-                        <img src="{% static 'images/icons/logo-01.png' %}" alt="IMG-LOGO">
+                    <a  class="logo">
+                        <img src="{% static 'images/icons/planet-earth.png' %}" alt="IMG-LOGO">
                     </a>
 
                     <!-- Menu desktop -->
@@ -169,8 +169,20 @@
                                     View Meeting Summary and Proposal
                                 </a>
                             </button>
+                            <button class="btn-view-summary">
+                                <a href="{% url 'cancel_booking' 'Garden_Maintainence' %}">
+                                      Cancel Booking
+                                </a>
+                            </button>
                         </div>
-                        
+                        <div id="alert-container" style="display: none;">
+                            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                <strong>{{ msg }}</strong>
+                                <button type="button" class="close" data-dismiss="alert" >
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -255,4 +267,12 @@
 
 
 </style>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var msg = "{{ msg }}";
+        if (msg) {
+            document.getElementById('alert-container').style.display = 'block';
+        }
+    });
+</script>
 </html>

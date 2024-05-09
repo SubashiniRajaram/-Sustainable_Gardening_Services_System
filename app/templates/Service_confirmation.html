@@ -95,8 +95,13 @@
    
     <div id="details-container">
         {% if email_sent %}
-        <p style="color: green;">Thank you for booking ,email is sent to you </p>
-        {% endif %}
+        <p style="color: green;">Thank you for booking ,Your booking has been confirmed.An email has been sent to you </p>
+        <p>Thank you for choosing us!💚 We're excited to embark on this green journey together 🌿. Please feel free to contact us for any queries or assistance.</p>
+        <form action="terrace-gardening">
+            <button type="submit">Home</button>
+        </form>
+        {% else %}
+
         <h1>Service Details</h1>
 
         <h2>User Information:</h2>
@@ -150,7 +155,7 @@
             </tr>
         </table>
         
-
+       
 
         <form method="post" action="save_service_detail">
             {% csrf_token %}
@@ -165,6 +170,7 @@
 
             <button type="submit">Confirm Booking</button>
         </form>
+        {% endif %}
     </div>
    
 </body>

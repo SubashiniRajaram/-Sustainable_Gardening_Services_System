@@ -33,6 +33,7 @@ urlpatterns = [
     path('landscape-details',views.landscape_details,name='landscape-details'),
     path('landscaping-inquiry',views.landscape_confirm,name='landscaping-inquiry'),
     path('landscape_service_detail',views.landscape_save,name='landscape_service_detail'),
+    path('cancel_booking/<str:service_type>/',views.cancel_booking,name="cancel_booking"),
 
     path('addstatus',views.status,name='addstatus'),
     path('updatesummary',views.update_summary,name='updatesummary'),

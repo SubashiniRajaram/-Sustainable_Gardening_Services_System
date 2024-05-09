@@ -190,11 +190,12 @@
 									<th class="column-6"></th>
 									<th class="column-7"></th>
 								</tr>
+								{% if cart_data %}
 								{% for key,data in cart_data.items%}
 								<tr class="table_row">
 									<td class="column-1">
 										<div class="how-itemcart1">
-											<img src="{% static data.image %}" alt="IMG">
+											<img src="{{ data.image }}" alt="IMG">
 										</div>
 									</td>
 									<td class="column-2">{{data.product_name}}</td>
@@ -220,7 +221,7 @@
 
 
 									<td class="column-5" id="total-{{ key }}">
-										Rs {{data.total}}
+										Rs. {{data.total}}
 									</td>
 
 									<td class="column-6">
@@ -242,6 +243,7 @@
 
 								</tr>
 								{% endfor%}
+								{% endif %}
 
 							</table>
 						</div>
@@ -298,10 +300,59 @@
 
 
 	<!-- Footer -->
-	<footer class="bg3 p-t-75 p-b-32">
+	<footer class="bg3 p-t-16 p-b-8">
 		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-lg-4 p-b-8">
+					<h4 class="stext-301 cl0 p-b-4">
+						Connect with Us
+					</h4>
+	
+					<ul class="m-0 p-0">
+						<li class="p-b-2">
+							<a href="https://www.facebook.com/" class="fs-18 cl7 hov-cl1 trans-04 m-r-4">
+								<i class="fa fa-facebook"></i>
+							</a>
+	
+							<a href="https://twitter.com/" class="fs-18 cl7 hov-cl1 trans-04 m-r-4">
+								<i class="fa fa-twitter"></i>
+							</a>
+	
+							<a href="https://www.instagram.com/" class="fs-18 cl7 hov-cl1 trans-04 m-r-4">
+								<i class="fa fa-instagram"></i>
+							</a>
+	
+							<a href="https://www.linkedin.com/" class="fs-18 cl7 hov-cl1 trans-04 m-r-4">
+								<i class="fa fa-linkedin"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
+	
+				<div class="col-md-6 col-lg-4 p-b-8">
+					<h4 class="stext-301 cl0 p-b-4">
+						Contact Us
+					</h4>
+	
+					<p class="stext-107 cl7 size-201">
+						Email: sgss@gmail.com<br>
+						Phone: 9987654323
+					</p>
+				</div>
 
-
+				<div class="col-md-6 col-lg-4 p-b-8">
+					<h4 class="stext-301 cl0 p-b-4">
+						Our Achievements
+					</h4>
+					<p class="stext-107 cl7 size-201">
+						🌱 Helped grow over 1000+ gardens! 🌿
+					</p>
+					<p class="stext-107 cl7 size-201">
+						🚗 Shipped over 1000+ orders! 📦
+					</p>
+					
+				</div>
+			</div>
 		</div>
 	</footer>
 
@@ -365,6 +416,7 @@
 			num.value = parseInt(num.value) - 1;
 			if (num.value < 1) {
 				num.value = 1; // Ensure quantity doesn't go below 1
+				return
 			}
 			updateTotal(key, price, num.value);
 			var total =document.getElementById("subtotal")
@@ -375,7 +427,7 @@
 		function updateTotal(key, price, quantity) {
 			var totalElement = document.getElementById("total-" + key);
 			var total = price * quantity;
-			totalElement.textContent = "Rs" + total.toFixed(2);
+			totalElement.textContent = "Rs." + total.toFixed(2);
 			
 		}
 	</script>

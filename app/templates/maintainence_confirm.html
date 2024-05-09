@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/png" href="{% static 'images/icons/planet-earth.png'%}" />
+	<link rel="icon" type="image/png" href="{% static 'images/icons/planet-earth.png'%}" />
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -79,8 +79,15 @@
    
     <div id="details-container">
         {% if email_sent %}
-        <p style="color: green;">Thank you for booking ,email is sent to you </p>
-        {% endif %}
+        <p style="color: green;">Thank you for booking ,Your booking has been confirmed.An email has been sent to you </p>
+        <p>Thank you for choosing us!💚 We're excited to embark on this green journey together 🌿. Please feel free to contact us for any queries or assistance.</p>
+        <form action="maintainence_home">
+            <button type="submit">Home</button>
+        </form>
+           
+        {% else %}
+
+       
         <h1>Service Details</h1>
 
         <h2>User Information:</h2>
@@ -121,7 +128,7 @@
 
         <h2>Estimated Price:</h2>
         <p>Estimated Price: Rs {{ estimate }}</p>
-
+       
         <form method="post" action="maintainence_service_detail">
             {% csrf_token %}
             <input type="hidden" name="email" value="{{ data.email }}">
@@ -137,6 +144,7 @@
 
             <button type="submit">Confirm Booking</button>
         </form>
+        {% endif %}
     </div>
    
 </body>
